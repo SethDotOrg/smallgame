@@ -12,7 +12,7 @@ var enemy_1_count: int = 0
 func _ready():
 	num_of_enemy_1_to_spawn = gather_point_1.MAX_ENEMIES_FOR_GATHER_POINT + gather_point_2.MAX_ENEMIES_FOR_GATHER_POINT
 
-#below should be moved to script that takes care of just enemy 1
+#below should be moved to script that takes care of just enemy X
 func _on_enemy_spawn_timer_timeout():
 	if enemy_1_count <  num_of_enemy_1_to_spawn:
 		var spawned_enemy = false
