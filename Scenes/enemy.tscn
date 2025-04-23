@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://dukn0pfh53lu3"]
+
+[ext_resource type="Script" uid="uid://bgr4pqpharp3j" path="res://Scripts/enemy.gd" id="1_1f0kj"]
+[ext_resource type="Script" uid="uid://4xeeu3gr4vyg" path="res://Scripts/enemyManager.gd" id="1_afpow"]
+[ext_resource type="Texture2D" uid="uid://bebeabq6xyh1k" path="res://Sprites/Enemies/MushroomLad.png" id="1_hghv2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1f0kj"]
+atlas = ExtResource("1_hghv2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afpow"]
+atlas = ExtResource("1_hghv2")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_287tu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1f0kj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_afpow")
+}],
+"loop": true,
+"name": &"run",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_afpow"]
+radius = 12.0
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_afpow")
+metadata/_edit_group_ = true
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["Enemy"]]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_1f0kj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+scale = Vector2(1.2, 1.2)
+sprite_frames = SubResource("SpriteFrames_287tu")
+animation = &"run"
+frame_progress = 0.0508439
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+scale = Vector2(1.2, 1.2)
+shape = SubResource("CircleShape2D_afpow")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="CharacterBody2D"]
