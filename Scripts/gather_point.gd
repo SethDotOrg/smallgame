@@ -5,7 +5,8 @@ var enemy_1_on_gather_point:int = 0
 
 func _process(delta):
 	print("there are: ",enemy_1_on_gather_point," at ", self.name)
-
+	pass
+	
 func check_assigned_enemy_1_num():
 	return enemy_1_on_gather_point < ENEMY_1_MAX
 

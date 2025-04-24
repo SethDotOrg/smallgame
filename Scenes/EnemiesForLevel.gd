@@ -23,5 +23,6 @@ func _get_num_of_enemy_1_spawn():
 	return num_of_enemy_1_to_spawn
 
 func _on_enemy_toad_spawn_timer_timeout():
-	enemy1._spawn_enemy_at_random_gather_point(enemy_1_count, num_of_enemy_1_to_spawn)
-	enemy_1_count = enemy_1_count + 1
+	var worked = enemy1._spawn_enemy_at_random_gather_point(enemy_1_count, num_of_enemy_1_to_spawn)
+	if worked == true:
+		enemy_1_count = enemy_1_count + 1
