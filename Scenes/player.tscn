@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://dch38mlri3jq5"]
+[gd_scene load_steps=23 format=3 uid="uid://dch38mlri3jq5"]
 
 [ext_resource type="Script" uid="uid://c7qvqnaqy8jxr" path="res://Scripts/player.gd" id="1_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://dni6qpiwmo23m" path="res://Sprites/Player/Player Character.png" id="2_6t5aa"]
+[ext_resource type="Texture2D" uid="uid://3d745opw1kjv" path="res://Sprites/Player/Player.png" id="2_fkybt"]
 [ext_resource type="Script" uid="uid://d21rgxc5hqn8y" path="res://Scripts/score.gd" id="4_fkybt"]
 [ext_resource type="Script" uid="uid://dd7j8ghakp0b1" path="res://Scripts/time.gd" id="4_vgqql"]
 [ext_resource type="Texture2D" uid="uid://opx2xg8oo7fn" path="res://Sprites/weapons/sword/sword1.png" id="5_x3wgy"]
+[ext_resource type="Texture2D" uid="uid://cynpjxh48dfdt" path="res://Sprites/Shadow.png" id="6_x3wgy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f1ek2"]
 radius = 8.0
@@ -14,36 +15,36 @@ height = 22.0
 radius = 9.0
 height = 33.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vgqql"]
-atlas = ExtResource("2_6t5aa")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fkybt"]
-atlas = ExtResource("2_6t5aa")
-region = Rect2(32, 0, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_x3wgy"]
-atlas = ExtResource("2_6t5aa")
-region = Rect2(64, 0, 32, 32)
+atlas = ExtResource("2_fkybt")
+region = Rect2(0, 0, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3smsa"]
-atlas = ExtResource("2_6t5aa")
-region = Rect2(96, 0, 32, 32)
+atlas = ExtResource("2_fkybt")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8erm5"]
+atlas = ExtResource("2_fkybt")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1ek2"]
+atlas = ExtResource("2_fkybt")
+region = Rect2(48, 0, 16, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8erm5"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vgqql")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fkybt")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_x3wgy")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3smsa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8erm5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1ek2")
 }],
 "loop": true,
 "name": &"Run",
@@ -488,6 +489,8 @@ collision_mask = 2
 shape = SubResource("CapsuleShape2D_fkybt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -7)
+scale = Vector2(1.4, 1.4)
 sprite_frames = SubResource("SpriteFrames_8erm5")
 animation = &"Run"
 frame_progress = 0.178572
@@ -504,7 +507,7 @@ wait_time = 0.3
 autostart = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.75, 1.75)
+zoom = Vector2(2.5, 2.5)
 position_smoothing_enabled = true
 
 [node name="Ui" type="Control" parent="."]
@@ -512,10 +515,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -328.0
-offset_top = -184.0
-offset_right = 328.0
-offset_bottom = 184.0
+offset_left = -231.0
+offset_top = -130.0
+offset_right = 231.0
+offset_bottom = 130.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -623,6 +626,13 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon/SwordRight/Area2D"]
 shape = SubResource("CapsuleShape2D_vgqql")
 disabled = true
+
+[node name="Shadow" type="Sprite2D" parent="."]
+visible = false
+z_index = -1
+position = Vector2(0, 10)
+scale = Vector2(1, 1.0625)
+texture = ExtResource("6_x3wgy")
 
 [connection signal="body_entered" from="EnemyCheckArea2D" to="." method="_on_enemy_check_area_2d_body_entered"]
 [connection signal="body_exited" from="EnemyCheckArea2D" to="." method="_on_enemy_check_area_2d_body_exited"]

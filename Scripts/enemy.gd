@@ -2,19 +2,13 @@ extends CharacterBody2D
 
 
 @onready var target_position = get_gather_point().global_position
-
-func _on_visible_on_screen_notifier_2d_screen_exited():
-	queue_free()
-
-#func _get_enemy_rigid_body():
-	#return get_node("RigidBody2D")
+@export var death_smoke_particle_scene: PackedScene
+@export var blood_splatter_scene: PackedScene
 	
 func _physics_process(delta):
-	#var enemy_direction = self.global_position.direction_to(gather_point.global_position) #get the direction from the enemy touched by to the player
-	velocity = global_position.direction_to(target_position) * get_enemy_speed()
-	move_and_slide()
+	velocity = global_position.direction_to(target_position) * get_enemy_speed() #calculate velocity with this enemies speed
+	move_and_slide() #move and slide is one of the choices for character body's to move 
 	
-
 func get_gather_point():
 	return get_parent().gather_point
 
@@ -27,8 +21,19 @@ func set_target_position(target: Vector2):
 func set_target_position_to_gather_point():
 	set_target_position(get_gather_point().global_position)
 
-#CHANGE THESE TO be from the player enemy check
-#func _on_player_area_check_area_entered(area):
-	#target_position = area.global_position
-#func _on_player_area_check_area_exited(area):
-	#target_position = get_spawner_princess().global_position
+func kill_enemy(player_position:Vector2):
+	#handle smoke
+	var death_smoke_particle = death_smoke_particle_scene.instantiate()
+	death_smoke_particle.global_position = self.global_position
+	death_smoke_particle.emitting = true
+	get_tree().current_scene.add_child(death_smoke_particle)
+	#handle blood
+	var blood_splatter = blood_splatter_scene.instantiate()
+	blood_splatter.global_position = self.global_position
+	blood_splatter.rotation = player_position.angle_to_point(self.global_position) #get the angle from player to enemy killed. blood splatter follows that line
+	blood_splatter.emitting = true
+	get_tree().current_scene.add_child(blood_splatter)
+
+	self.visible=false
+	if death_smoke_particle.finished:
+		get_parent().queue_free()

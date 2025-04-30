@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var enemy_1_scene: PackedScene #keep to give to enemies for level script
+@export var ememy_1_appear_smoke: PackedScene
 var parent
 var num_of_gather_points: int
 
@@ -28,8 +29,12 @@ func _spawn_enemy_at_random_gather_point(enemy_count: int, num_of_enemy_to_spawn
 			enemy_spawn_location = parent.gather_point_2.global_position
 		
 		if spawned_enemy == true:
-			# Set the enemy's position to the random location around the spawn
-			enemy.global_position = enemy_spawn_location + Vector2(randf_range(-50,50),randf_range(-50,50))
+			var enemy_appear_smoke = ememy_1_appear_smoke.instantiate()
+			enemy_appear_smoke.emitting = true
+			# Set the enemy's position to the random location around the spawn so that they don't spawn at the same coords
+			var enemy_spawn_position = enemy_spawn_location + Vector2(randf_range(-500,500),randf_range(-500,500))
+			enemy.global_position = enemy_spawn_position
+			enemy_appear_smoke.global_position = enemy_spawn_position #spawn smoke should be at the same location
 			
 			# Choose the speed for the enemy.
 			var speed = randf_range(40.0, 70.0)
@@ -37,5 +42,7 @@ func _spawn_enemy_at_random_gather_point(enemy_count: int, num_of_enemy_to_spawn
 			
 			# Spawn the enemy by adding it as a child of self
 			add_child(enemy)
-			return spawned_enemy
-	return spawned_enemy
+			#spawn the smoke
+			add_child(enemy_appear_smoke)
+			return spawned_enemy #will be true if returned here
+	return spawned_enemy #false if returned here

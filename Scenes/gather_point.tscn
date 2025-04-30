@@ -16,6 +16,7 @@ sources/0 = SubResource("TileSetAtlasSource_hjumk")
 size = Vector2(64, 60)
 
 [node name="GatherPoint" type="Node2D"]
+scale = Vector2(0.75, 0.75)
 script = ExtResource("1_rapfc")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]

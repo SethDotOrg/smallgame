@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://7r4lhttnitjs"]
+
+[ext_resource type="Texture2D" uid="uid://drmfu2btcgvt5" path="res://Sprites/Particles/EnemyDeathDust2.png" id="1_gs2fo"]
+[ext_resource type="Script" uid="uid://wh85b8mmulod" path="res://Scripts/death_smoke.gd" id="2_a1tee"]
+
+[sub_resource type="Curve" id="Curve_ghaa6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_1dp5w"]
+offsets = PackedFloat32Array(0.0265957, 0.675532, 0.984043)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="DeathSmoke" type="CPUParticles2D"]
+z_index = -1
+emitting = false
+amount = 6
+texture = ExtResource("1_gs2fo")
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 50.0
+angle_min = -30.0
+angle_max = 30.0
+scale_amount_min = 0.75
+scale_amount_curve = SubResource("Curve_ghaa6")
+color_ramp = SubResource("Gradient_1dp5w")
+script = ExtResource("2_a1tee")

@@ -10,6 +10,7 @@ var num_of_enemy_1_to_spawn: int
 var enemy_1_count: int = 0
 
 func _ready():
+	#get gather points and add the total enemies to spawn together so we know when to stop spawning them
 	num_of_enemy_1_to_spawn = gather_point_1.ENEMY_1_MAX + gather_point_2.ENEMY_1_MAX
 
 func _get_num_of_gather_points():
@@ -23,6 +24,7 @@ func _get_num_of_enemy_1_spawn():
 	return num_of_enemy_1_to_spawn
 
 func _on_enemy_toad_spawn_timer_timeout():
-	var worked = enemy1._spawn_enemy_at_random_gather_point(enemy_1_count, num_of_enemy_1_to_spawn)
+	var worked = enemy1._spawn_enemy_at_random_gather_point(enemy_1_count, num_of_enemy_1_to_spawn)#if requirements met to
+	#spawn the enemy
 	if worked == true:
-		enemy_1_count = enemy_1_count + 1
+		enemy_1_count = enemy_1_count + 1 #then add to the count of total enemies (enemy 1 in this case. need more counters later)

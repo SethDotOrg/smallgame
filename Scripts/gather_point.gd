@@ -4,10 +4,10 @@ extends Node2D
 var enemy_1_on_gather_point:int = 0
 
 func _process(delta):
-	print("there are: ",enemy_1_on_gather_point," at ", self.name)
+	#print("there are: ",enemy_1_on_gather_point," at ", self.name)
 	pass
 	
-func check_assigned_enemy_1_num():
+func check_assigned_enemy_1_num(): #check to see if enemy 1 spawned is less then the max
 	return enemy_1_on_gather_point < ENEMY_1_MAX
 
 func update_assigned_enemy_1_num():

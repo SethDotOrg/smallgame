@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dukn0pfh53lu3"]
+[gd_scene load_steps=10 format=3 uid="uid://dukn0pfh53lu3"]
 
 [ext_resource type="Script" uid="uid://bgr4pqpharp3j" path="res://Scripts/enemy.gd" id="1_1f0kj"]
 [ext_resource type="Script" uid="uid://4xeeu3gr4vyg" path="res://Scripts/enemyManager.gd" id="1_afpow"]
 [ext_resource type="Texture2D" uid="uid://bebeabq6xyh1k" path="res://Sprites/Enemies/MushroomLad.png" id="1_hghv2"]
+[ext_resource type="PackedScene" uid="uid://7r4lhttnitjs" path="res://Scenes/Particle/death_smoke.tscn" id="3_287tu"]
+[ext_resource type="PackedScene" uid="uid://cmlu31mal2pgy" path="res://Scenes/Particle/blood_splatter.tscn" id="4_0830c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1f0kj"]
 atlas = ExtResource("1_hghv2")
@@ -37,6 +39,8 @@ metadata/_edit_group_ = true
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_1f0kj")
+death_smoke_particle_scene = ExtResource("3_287tu")
+blood_splatter_scene = ExtResource("4_0830c")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 scale = Vector2(1.2, 1.2)
