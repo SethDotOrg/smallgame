@@ -11,7 +11,7 @@ var enemy_1_count: int = 0
 
 func _ready():
 	#get gather points and add the total enemies to spawn together so we know when to stop spawning them
-	num_of_enemy_1_to_spawn = gather_point_1.ENEMY_1_MAX + gather_point_2.ENEMY_1_MAX
+	num_of_enemy_1_to_spawn = gather_point_1.ENEMY_1_TOTAL + gather_point_2.ENEMY_1_TOTAL
 
 func _get_num_of_gather_points():
 	return num_of_gather_points

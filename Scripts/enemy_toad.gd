@@ -17,12 +17,12 @@ func _spawn_enemy_at_random_gather_point(enemy_count: int, num_of_enemy_to_spawn
 		var enemy = enemy_1_scene.instantiate()
 		var enemy_spawn_location
 		var enemy_gather_point_num = randi_range(1, num_of_gather_points)
-		if enemy_gather_point_num == 1 and parent.gather_point_1.check_assigned_enemy_1_num():
+		if enemy_gather_point_num == 1 and parent.gather_point_1.check_assigned_enemy_1_num() and parent.gather_point_1.check_assigned_enemies():
 			parent.gather_point_1.update_assigned_enemy_1_num()
 			enemy.set_gather_point(parent.gather_point_1)
 			spawned_enemy = true
 			enemy_spawn_location = parent.gather_point_1.global_position
-		elif enemy_gather_point_num == 2 and parent.gather_point_2.check_assigned_enemy_1_num():
+		elif enemy_gather_point_num == 2 and parent.gather_point_2.check_assigned_enemy_1_num() and parent.gather_point_2.check_assigned_enemies():
 			parent.gather_point_2.update_assigned_enemy_1_num()
 			enemy.set_gather_point(parent.gather_point_2)
 			spawned_enemy = true

@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=3 uid="uid://dquiphqrnhsrw"]
+
+[ext_resource type="Script" uid="uid://bnq2ysmb1s6s8" path="res://Scenes/UI/base_ui.gd" id="1_d1ess"]
+[ext_resource type="Script" uid="uid://d21rgxc5hqn8y" path="res://Scripts/score.gd" id="1_wsdff"]
+[ext_resource type="Script" uid="uid://dd7j8ghakp0b1" path="res://Scripts/time.gd" id="2_d1ess"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_d1ess"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_xm13k"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_fkybt"]
+font_size = 40
+font_color = Color(0.921154, 0.920709, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="BaseUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -231.0
+offset_top = -130.0
+offset_right = 231.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_d1ess")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 128
+follow_viewport_scale = 2.0
+
+[node name="Score" type="Label" parent="CanvasLayer"]
+offset_right = 78.0
+offset_bottom = 23.0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_d1ess")
+script = ExtResource("1_wsdff")
+
+[node name="Time" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.5
+offset_right = 20.5
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "00:00"
+label_settings = SubResource("LabelSettings_xm13k")
+script = ExtResource("2_d1ess")
+
+[node name="GameTime" type="Timer" parent="CanvasLayer/Time"]
+wait_time = 120.0
+
+[node name="GameOver" type="Label" parent="CanvasLayer"]
+visible = false
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.046
+offset_left = -117.0
+offset_top = 24.0
+offset_right = 113.0
+offset_bottom = 49.192
+grow_horizontal = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_fkybt")
+
+[connection signal="timeout" from="CanvasLayer/Time/GameTime" to="." method="_on_game_time_timeout"]

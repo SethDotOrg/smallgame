@@ -15,9 +15,13 @@ signal hit
 @onready var _area_for_enemy_follow_timer = $AreaForEnemyFollow/AreaDisabledTimer
 @onready var _enemy_follow_collision_shape = $AreaForEnemyFollow/EnemyFollowCollisionShape
 
-@onready var _score_ui = $Ui/Score
-@onready var _game_over_ui = $Ui/GameOver
+@onready var _base_ui = $Ui
+var _score_ui
+var _game_over_ui
 
+func _ready():
+	_score_ui = _base_ui.get_score_ui()
+	_game_over_ui = _base_ui.get_game_over_ui()
 
 func _physics_process(delta):
 	velocity = Vector2.ZERO # The player's movement vector.
@@ -67,32 +71,31 @@ func _physics_process(delta):
 func _on_sword_up_area_2d_body_entered(body):
 	if body.is_in_group("Enemy"):
 		body.kill_enemy(self.global_position)
+		body.get_gather_point().decrease_assigned_enemies_num()
 		GlobalVariables.score += 1
 		_score_ui.update_score()
 		check_score_for_sword()
 func _on_sword_down_area_2d_body_entered(body):
 	if body.is_in_group("Enemy"):
 		body.kill_enemy(self.global_position)
+		body.get_gather_point().decrease_assigned_enemies_num()
 		GlobalVariables.score += 1
 		_score_ui.update_score()
 		check_score_for_sword()
 func _on_sword_left_area_2d_body_entered(body):
 	if body.is_in_group("Enemy"):
 		body.kill_enemy(self.global_position)
+		body.get_gather_point().decrease_assigned_enemies_num()
 		GlobalVariables.score += 1
 		_score_ui.update_score()
 		check_score_for_sword()
 func _on_sword_right_area_2d_body_entered(body):
 	if body.is_in_group("Enemy"):
 		body.kill_enemy(self.global_position)
+		body.get_gather_point().decrease_assigned_enemies_num()
 		GlobalVariables.score += 1
 		_score_ui.update_score()
 		check_score_for_sword()
-
-
-func _on_game_time_timeout():
-	_game_over_ui.visible = true
-	get_tree().paused = true
 
 func check_score_for_sword(): #this is temp for upgrading the sword
 	if GlobalVariables.score == 10 or GlobalVariables.score == 50 or GlobalVariables.score == 100:
