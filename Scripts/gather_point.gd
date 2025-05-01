@@ -35,5 +35,25 @@ func update_assigned_enemy_1_num():
 
 
 func _on_enemies_defeated():
-	GlobalVariables.score = GlobalVariables.score + _time_to_clear._get_timer_for_score() #add remaining seconds as score 
+	GlobalVariables.score = GlobalVariables.score + calculate_score() #add remaining seconds as score 
 	#TODO make a formula for more interesting score addition
+
+func calculate_score():
+	var score
+	if (_time_to_clear._get_timer_for_score() / _time_to_clear.starting_time) >= 0.75:
+		score = _time_to_clear._get_timer_for_score() * 2.3
+		ceili(score)
+		print("percent used: ",0.75, "multiplied by 2.3")
+	elif (_time_to_clear._get_timer_for_score() / _time_to_clear.starting_time) >= 0.50:
+		score = _time_to_clear._get_timer_for_score() * 1.7
+		ceili(score)
+		print("percent used: ",0.50, "multiplied by 1.7")
+	elif (_time_to_clear._get_timer_for_score() / _time_to_clear.starting_time) >= 0.25:
+		score = _time_to_clear._get_timer_for_score() * 1.3
+		ceili(score)
+		print("percent used: ",0.25, "multiplied by 1.3")
+	else:
+		score = _time_to_clear._get_timer_for_score()
+		print("percent used: ",0, "multiplied by 1")
+	print("score sending back: ", score)
+	return score
