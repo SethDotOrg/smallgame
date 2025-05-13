@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgpgmgdhwmyo3"]
+
+[ext_resource type="Script" uid="uid://b5qni3ry0yqey" path="res://Scripts/UI/main_menu.gd" id="1_5wsvm"]
+
+[node name="MainMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5wsvm")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 128
+follow_viewport_scale = 2.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -50.5
+offset_right = 183.0
+offset_bottom = 50.5
+grow_vertical = 2
+
+[node name="Start" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Exit")
+text = "MENU_START"
+
+[node name="Options" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "MENU_OPTIONS"
+
+[node name="Exit" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../Start")
+text = "MENU_EXIT"
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

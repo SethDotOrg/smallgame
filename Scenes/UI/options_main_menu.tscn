@@ -1,0 +1,290 @@
+[gd_scene load_steps=11 format=3 uid="uid://ch7pa45fjubjo"]
+
+[ext_resource type="Script" uid="uid://dio7uhv2wciqf" path="res://Scripts/UI/options_main_menu.gd" id="1_elcv2"]
+[ext_resource type="Texture2D" uid="uid://dghgvto1y1asr" path="res://Sprites/UI/ArrowBack Unpressed.png" id="2_jajb2"]
+[ext_resource type="Texture2D" uid="uid://bgwmvfw8krfuw" path="res://Sprites/UI/ArrowBack pressed.png" id="3_ec7rt"]
+[ext_resource type="Texture2D" uid="uid://s3lqy4udgerl" path="res://Sprites/UI/ArrowBack Unpressed Focussed.png" id="4_hwehd"]
+[ext_resource type="Texture2D" uid="uid://dsqavx8b8uq4u" path="res://Sprites/UI/Minus Unpressed.png" id="5_gouf8"]
+[ext_resource type="Texture2D" uid="uid://cmo02xawpn07p" path="res://Sprites/UI/Minus Pressed.png" id="6_jxf4d"]
+[ext_resource type="Texture2D" uid="uid://dsve8q0hvvhf7" path="res://Sprites/UI/Minus Unpressed Focussed.png" id="7_2hqvn"]
+[ext_resource type="Texture2D" uid="uid://b3fmmri54cirx" path="res://Sprites/UI/Plus Unpressed.png" id="8_debv3"]
+[ext_resource type="Texture2D" uid="uid://s1yw1r8hkudh" path="res://Sprites/UI/Plus Pressed.png" id="9_68hp3"]
+[ext_resource type="Texture2D" uid="uid://brulh301wapic" path="res://Sprites/UI/Plus Unpressed Focussed.png" id="10_ara1a"]
+
+[node name="OptionsMainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_elcv2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 128
+follow_viewport_scale = 2.0
+
+[node name="OptionsMenu" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 32.0
+offset_top = -137.0
+offset_right = 357.0
+offset_bottom = 137.0
+grow_vertical = 2
+
+[node name="BackButtonMainMenu" type="TextureButton" parent="CanvasLayer/OptionsMenu"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+focus_neighbor_top = NodePath("../AudioOptions")
+focus_neighbor_bottom = NodePath("../AudioOptions")
+texture_normal = ExtResource("2_jajb2")
+texture_pressed = ExtResource("3_ec7rt")
+texture_hover = ExtResource("4_hwehd")
+
+[node name="AudioOptions" type="Button" parent="CanvasLayer/OptionsMenu"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../BackButtonMainMenu")
+focus_neighbor_bottom = NodePath("../BackButtonMainMenu")
+text = "MENU_AUDIO_OPTIONS"
+
+[node name="MoveUpContainer" type="HBoxContainer" parent="CanvasLayer/OptionsMenu"]
+layout_mode = 2
+
+[node name="Control1" type="Label" parent="CanvasLayer/OptionsMenu/MoveUpContainer"]
+layout_mode = 2
+text = "CONTROL_MOVE_UP"
+
+[node name="Control2" type="Label" parent="CanvasLayer/OptionsMenu/MoveUpContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "MOVE_UP"
+
+[node name="MoveDownContainer" type="HBoxContainer" parent="CanvasLayer/OptionsMenu"]
+layout_mode = 2
+
+[node name="Control1" type="Label" parent="CanvasLayer/OptionsMenu/MoveDownContainer"]
+layout_mode = 2
+text = "CONTROL_MOVE_DOWN"
+
+[node name="Control2" type="Label" parent="CanvasLayer/OptionsMenu/MoveDownContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "MOVE_DOWN"
+
+[node name="MoveLeftContainer" type="HBoxContainer" parent="CanvasLayer/OptionsMenu"]
+layout_mode = 2
+
+[node name="Control1" type="Label" parent="CanvasLayer/OptionsMenu/MoveLeftContainer"]
+layout_mode = 2
+text = "CONTROL_MOVE_LEFT"
+
+[node name="Control2" type="Label" parent="CanvasLayer/OptionsMenu/MoveLeftContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "MOVE_LEFT"
+
+[node name="MoveRightContainer" type="HBoxContainer" parent="CanvasLayer/OptionsMenu"]
+layout_mode = 2
+
+[node name="Control1" type="Label" parent="CanvasLayer/OptionsMenu/MoveRightContainer"]
+layout_mode = 2
+text = "CONTROL_MOVE_RIGHT"
+
+[node name="Control2" type="Label" parent="CanvasLayer/OptionsMenu/MoveRightContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "MOVE_RIGHT"
+
+[node name="AttackUpContainer" type="HBoxContainer" parent="CanvasLayer/OptionsMenu"]
+layout_mode = 2
+
+[node name="Control1" type="Label" parent="CanvasLayer/OptionsMenu/AttackUpContainer"]
+layout_mode = 2
+text = "CONTROL_ATTACK_UP"
+
+[node name="Control2" type="Label" parent="CanvasLayer/OptionsMenu/AttackUpContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "ATTACK_UP"
+
+[node name="AttackDownContainer" type="HBoxContainer" parent="CanvasLayer/OptionsMenu"]
+layout_mode = 2
+
+[node name="Control1" type="Label" parent="CanvasLayer/OptionsMenu/AttackDownContainer"]
+layout_mode = 2
+text = "CONTROL_ATTACK_DOWN"
+
+[node name="Control2" type="Label" parent="CanvasLayer/OptionsMenu/AttackDownContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "ATTACK_DOWN"
+
+[node name="AttackLeftContainer" type="HBoxContainer" parent="CanvasLayer/OptionsMenu"]
+layout_mode = 2
+
+[node name="Control1" type="Label" parent="CanvasLayer/OptionsMenu/AttackLeftContainer"]
+layout_mode = 2
+text = "CONTROL_ATTACK_LEFT"
+
+[node name="Control2" type="Label" parent="CanvasLayer/OptionsMenu/AttackLeftContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "ATTACK_LEFT"
+
+[node name="AttackRightContainer" type="HBoxContainer" parent="CanvasLayer/OptionsMenu"]
+layout_mode = 2
+
+[node name="Control1" type="Label" parent="CanvasLayer/OptionsMenu/AttackRightContainer"]
+layout_mode = 2
+text = "CONTROL_ATTACK_RIGHT"
+
+[node name="Control2" type="Label" parent="CanvasLayer/OptionsMenu/AttackRightContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "ATTACK_RIGHT"
+
+[node name="PauseContainer" type="HBoxContainer" parent="CanvasLayer/OptionsMenu"]
+layout_mode = 2
+
+[node name="Control1" type="Label" parent="CanvasLayer/OptionsMenu/PauseContainer"]
+layout_mode = 2
+text = "CONTROL_PAUSE"
+
+[node name="Control2" type="Label" parent="CanvasLayer/OptionsMenu/PauseContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "PAUSE"
+
+[node name="AudioMenu" type="VBoxContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 32.0
+offset_top = -137.0
+offset_right = 357.0
+offset_bottom = 137.0
+grow_vertical = 2
+
+[node name="BackButtonToOptionsMenu" type="TextureButton" parent="CanvasLayer/AudioMenu"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+focus_neighbor_top = NodePath("../SFXVolume/Minus")
+focus_neighbor_bottom = NodePath("../MasterVolume/Minus")
+texture_normal = ExtResource("2_jajb2")
+texture_pressed = ExtResource("3_ec7rt")
+texture_hover = ExtResource("4_hwehd")
+
+[node name="MasterVolumeLabel" type="RichTextLabel" parent="CanvasLayer/AudioMenu"]
+layout_mode = 2
+bbcode_enabled = true
+text = "MASTER_VOLUME"
+fit_content = true
+
+[node name="MasterVolume" type="HFlowContainer" parent="CanvasLayer/AudioMenu"]
+layout_mode = 2
+
+[node name="Minus" type="TextureButton" parent="CanvasLayer/AudioMenu/MasterVolume"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+focus_neighbor_left = NodePath("../Plus")
+focus_neighbor_top = NodePath("../../BackButtonToOptionsMenu")
+focus_neighbor_right = NodePath("../Plus")
+focus_neighbor_bottom = NodePath("../../MusicVolume/Minus")
+texture_normal = ExtResource("5_gouf8")
+texture_pressed = ExtResource("6_jxf4d")
+texture_hover = ExtResource("7_2hqvn")
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AudioMenu/MasterVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+step = 5.0
+
+[node name="Plus" type="TextureButton" parent="CanvasLayer/AudioMenu/MasterVolume"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Minus")
+focus_neighbor_top = NodePath("../../BackButtonToOptionsMenu")
+focus_neighbor_right = NodePath("../Minus")
+focus_neighbor_bottom = NodePath("../../MusicVolume/Plus")
+texture_normal = ExtResource("8_debv3")
+texture_pressed = ExtResource("9_68hp3")
+texture_hover = ExtResource("10_ara1a")
+
+[node name="MusicVolumeLabel" type="RichTextLabel" parent="CanvasLayer/AudioMenu"]
+layout_mode = 2
+bbcode_enabled = true
+text = "MUSIC_VOLUME"
+fit_content = true
+
+[node name="MusicVolume" type="HFlowContainer" parent="CanvasLayer/AudioMenu"]
+layout_mode = 2
+
+[node name="Minus" type="TextureButton" parent="CanvasLayer/AudioMenu/MusicVolume"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+focus_neighbor_left = NodePath("../Plus")
+focus_neighbor_top = NodePath("../../MasterVolume/Minus")
+focus_neighbor_right = NodePath("../Plus")
+focus_neighbor_bottom = NodePath("../../SFXVolume/Minus")
+texture_normal = ExtResource("5_gouf8")
+texture_pressed = ExtResource("6_jxf4d")
+texture_hover = ExtResource("7_2hqvn")
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AudioMenu/MusicVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+step = 5.0
+
+[node name="Plus" type="TextureButton" parent="CanvasLayer/AudioMenu/MusicVolume"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Minus")
+focus_neighbor_top = NodePath("../../MasterVolume/Plus")
+focus_neighbor_right = NodePath("../Minus")
+focus_neighbor_bottom = NodePath("../../SFXVolume/Plus")
+texture_normal = ExtResource("8_debv3")
+texture_pressed = ExtResource("9_68hp3")
+texture_hover = ExtResource("10_ara1a")
+
+[node name="SFXVolumeLabel" type="RichTextLabel" parent="CanvasLayer/AudioMenu"]
+layout_mode = 2
+bbcode_enabled = true
+text = "SFX_VOLUME"
+fit_content = true
+
+[node name="SFXVolume" type="HFlowContainer" parent="CanvasLayer/AudioMenu"]
+layout_mode = 2
+
+[node name="Minus" type="TextureButton" parent="CanvasLayer/AudioMenu/SFXVolume"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+focus_neighbor_left = NodePath("../Plus")
+focus_neighbor_top = NodePath("../../MusicVolume/Minus")
+focus_neighbor_right = NodePath("../Plus")
+focus_neighbor_bottom = NodePath("../../BackButtonToOptionsMenu")
+texture_normal = ExtResource("5_gouf8")
+texture_pressed = ExtResource("6_jxf4d")
+texture_hover = ExtResource("7_2hqvn")
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AudioMenu/SFXVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+step = 5.0
+
+[node name="Plus" type="TextureButton" parent="CanvasLayer/AudioMenu/SFXVolume"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Minus")
+focus_neighbor_top = NodePath("../../MusicVolume/Plus")
+focus_neighbor_right = NodePath("../Minus")
+focus_neighbor_bottom = NodePath("../../BackButtonToOptionsMenu")
+texture_normal = ExtResource("8_debv3")
+texture_pressed = ExtResource("9_68hp3")
+texture_hover = ExtResource("10_ara1a")
+
+[connection signal="pressed" from="CanvasLayer/OptionsMenu/BackButtonMainMenu" to="." method="_on_back_button_main_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/OptionsMenu/AudioOptions" to="." method="_on_audio_options_pressed"]
+[connection signal="pressed" from="CanvasLayer/AudioMenu/BackButtonToOptionsMenu" to="." method="_on_back_button_to_options_menu_pressed"]

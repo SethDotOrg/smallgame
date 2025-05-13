@@ -1,9 +1,12 @@
+class_name Player
 extends CharacterBody2D
 
 signal hit
 
+@export var _base_ui: Control
 @export var _weapon_animation_player: AnimationPlayer
 @export var speed = 125 # How fast the player will move (pixels/sec).
+@export var HEALTH = 4
 
 @onready var sword_up = $Weapon/SwordUp
 @onready var sword_down = $Weapon/SwordDown
@@ -11,61 +14,57 @@ signal hit
 @onready var sword_right = $Weapon/SwordRight
 @onready var _player_sprite = $AnimatedSprite2D
 @onready var _enemy_check_collision_shape = $EnemyCheckArea2D/EnemyCollisionShape2D
+@onready var _state_machine = $PlayerStateMachine
 
 @onready var _area_for_enemy_follow_timer = $AreaForEnemyFollow/AreaDisabledTimer
 @onready var _enemy_follow_collision_shape = $AreaForEnemyFollow/EnemyFollowCollisionShape
+@onready var _allow_hit_timer = $AllowHitTimer
 
-@onready var _base_ui = $Ui
 var _score_ui
 var _game_over_ui
+var _health_ui
+
+var health: int
 
 func _ready():
+	_state_machine.init(self)
 	_score_ui = _base_ui.get_score_ui()
 	_game_over_ui = _base_ui.get_game_over_ui()
+	_health_ui = _base_ui.get_health_ui()
+	health = HEALTH
+	_health_ui._set_health(health)
+	
+func _unhandled_input(event: InputEvent):
+	_state_machine.process_input(event)
 
+func _process(delta: float):
+	_state_machine.process_frame(delta)
+	
 func _physics_process(delta):
-	velocity = Vector2.ZERO # The player's movement vector.
-	#get the players direction
-	if Input.is_action_pressed("move_right"):
-		velocity.x += 1
-	if Input.is_action_pressed("move_left"):
-		velocity.x -= 1
-	if Input.is_action_pressed("move_down"):
-		velocity.y += 1
-	if Input.is_action_pressed("move_up"):
-		velocity.y -= 1
+	_state_machine.process_physics(delta)
 	
 	#check to see the input and if the player is attacking
-	if Input.is_action_just_pressed("ui_right") and GlobalVariables.player_attacking == false:
+	if Input.is_action_just_pressed("attack_right") and GlobalVariables.player_attacking == false:
 		GlobalVariables.player_attacking = true
 		_weapon_animation_player.play("sword_right_animation")
 		await _weapon_animation_player.animation_finished
 		GlobalVariables.player_attacking = false
-	if Input.is_action_just_pressed("ui_left") and GlobalVariables.player_attacking == false:
+	if Input.is_action_just_pressed("attack_left") and GlobalVariables.player_attacking == false:
 		GlobalVariables.player_attacking = true
 		_weapon_animation_player.play("sword_left_animation")
 		await _weapon_animation_player.animation_finished
 		GlobalVariables.player_attacking = false
-	if Input.is_action_just_pressed("ui_down") and GlobalVariables.player_attacking == false:
+	if Input.is_action_just_pressed("attack_down") and GlobalVariables.player_attacking == false:
 		GlobalVariables.player_attacking = true
 		_weapon_animation_player.play("sword_down_animation")
 		await _weapon_animation_player.animation_finished
 		GlobalVariables.player_attacking = false
-	if Input.is_action_just_pressed("ui_up") and GlobalVariables.player_attacking == false:
+	if Input.is_action_just_pressed("attack_up") and GlobalVariables.player_attacking == false:
 		GlobalVariables.player_attacking = true
 		_weapon_animation_player.play("sword_up_animation")
 		await _weapon_animation_player.animation_finished
 		GlobalVariables.player_attacking = false
 	
-	
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed #normalize the velocity so if we get velocity (x,y) = (1,1) 
-													#it wont be faster then only and x or y being 1.
-		_player_sprite.play()
-	else:
-		_player_sprite.stop()
-		
-	move_and_slide() #one of the options to get the player to move with the set velocity
 
 #handle sword attack. We need a system that will abstract some of this
 func _on_sword_up_area_2d_body_entered(body):
@@ -128,7 +127,13 @@ func _on_enemy_check_area_2d_body_entered(body):
 	if body.is_in_group("Enemy"):
 		#push the player back in the direction the enemy was moving
 		var knockback_direction = body.global_position.direction_to(self.global_position) #get the direction from the enemy touched by to the player
-		self.global_position += knockback_direction * 10 #move the player back in that direction by a strength
+		self.global_position += knockback_direction * 40 #move the player back in that direction by a strength
+		if _allow_hit_timer.time_left <=0:
+			print("hit timer")
+			#set health
+			health = health - 1
+			_health_ui._set_health(health)
+		_allow_hit_timer.start()
 	# Must be deferred as we can't change physics properties on a physics callback.
 	_enemy_check_collision_shape.set_deferred("disabled", true) #basically turn off the collision shape so we dont get more then one input at the end of the frame
 func _on_enemy_check_area_2d_body_exited(body):

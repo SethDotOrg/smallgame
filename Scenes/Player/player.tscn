@@ -1,8 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://dch38mlri3jq5"]
+[gd_scene load_steps=24 format=3 uid="uid://dch38mlri3jq5"]
 
 [ext_resource type="Script" uid="uid://c7qvqnaqy8jxr" path="res://Scripts/player.gd" id="1_cvnsp"]
+[ext_resource type="Script" uid="uid://bvjmux81xare5" path="res://Scripts/PlayerStateMachine/player_state_machine.gd" id="2_3smsa"]
 [ext_resource type="Texture2D" uid="uid://3d745opw1kjv" path="res://Sprites/Player/Player.png" id="2_fkybt"]
-[ext_resource type="PackedScene" uid="uid://dquiphqrnhsrw" path="res://Scenes/UI/BaseUI.tscn" id="3_fkybt"]
+[ext_resource type="Script" uid="uid://cnnrqk8maadni" path="res://Scripts/PlayerStateMachine/state.gd" id="3_8erm5"]
+[ext_resource type="Script" uid="uid://b08q1hadtp8ox" path="res://Scripts/PlayerStateMachine/idle.gd" id="4_8erm5"]
+[ext_resource type="Script" uid="uid://boyqpdoc0cox3" path="res://Scripts/PlayerStateMachine/walk.gd" id="5_f1ek2"]
 [ext_resource type="Texture2D" uid="uid://opx2xg8oo7fn" path="res://Sprites/weapons/sword/sword1.png" id="5_x3wgy"]
 [ext_resource type="Texture2D" uid="uid://cynpjxh48dfdt" path="res://Sprites/Shadow.png" id="6_x3wgy"]
 
@@ -32,6 +35,14 @@ region = Rect2(48, 0, 16, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8erm5"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3wgy")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_x3wgy")
@@ -473,6 +484,23 @@ height = 34.0
 script = ExtResource("1_cvnsp")
 _weapon_animation_player = NodePath("Weapon/AnimationPlayerWeapon")
 
+[node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("_starting_state")]
+script = ExtResource("2_3smsa")
+_starting_state = NodePath("Idle")
+
+[node name="State" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("3_8erm5")
+
+[node name="Idle" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("walk_state")]
+script = ExtResource("4_8erm5")
+walk_state = NodePath("../Walk")
+_animation_name = "Idle"
+
+[node name="Walk" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("5_f1ek2")
+idle_state = NodePath("../Idle")
+_animation_name = "Run"
+
 [node name="PlayerCollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_f1ek2")
 
@@ -486,8 +514,7 @@ shape = SubResource("CapsuleShape2D_fkybt")
 position = Vector2(0, -7)
 scale = Vector2(1.4, 1.4)
 sprite_frames = SubResource("SpriteFrames_8erm5")
-animation = &"Run"
-frame_progress = 0.178572
+animation = &"Idle"
 
 [node name="AreaForEnemyFollow" type="Area2D" parent="."]
 collision_mask = 2
@@ -503,8 +530,6 @@ autostart = true
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
-
-[node name="Ui" parent="." instance=ExtResource("3_fkybt")]
 
 [node name="Weapon" type="Node2D" parent="."]
 
@@ -570,6 +595,9 @@ z_index = -1
 position = Vector2(0, 10)
 scale = Vector2(1, 1.0625)
 texture = ExtResource("6_x3wgy")
+
+[node name="AllowHitTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="body_entered" from="EnemyCheckArea2D" to="." method="_on_enemy_check_area_2d_body_entered"]
 [connection signal="body_exited" from="EnemyCheckArea2D" to="." method="_on_enemy_check_area_2d_body_exited"]
