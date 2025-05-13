@@ -7,6 +7,7 @@ extends Control
 func _ready():
 	#TranslationServer.set_locale("ja")
 	_start_button.grab_focus()
+	get_tree().paused = false
 
 
 func _on_start_pressed():
