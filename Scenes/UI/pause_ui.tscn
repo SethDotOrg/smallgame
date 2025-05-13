@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://duhgxjox3tyjg"]
+
+[ext_resource type="Script" uid="uid://c2kvtjqoqqruo" path="res://Scripts/UI/pause_ui.gd" id="1_mx7s6"]
+
+[node name="PauseUI" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mx7s6")
+
+[node name="PauseOptions" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 32.0
+offset_top = -50.5
+offset_right = 261.0
+offset_bottom = 50.5
+grow_vertical = 2
+
+[node name="Resume" type="Button" parent="PauseOptions"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../ExitToMainMenu")
+text = "MENU_RESUME"
+
+[node name="Options" type="Button" parent="PauseOptions"]
+layout_mode = 2
+text = "MENU_OPTIONS"
+
+[node name="ExitToMainMenu" type="Button" parent="PauseOptions"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../Resume")
+text = "MENU_EXIT_TO_MAIN_MENU"
+
+[connection signal="pressed" from="PauseOptions/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseOptions/ExitToMainMenu" to="." method="_on_exit_to_main_menu_pressed"]

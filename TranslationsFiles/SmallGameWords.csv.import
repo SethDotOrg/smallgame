@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://j0thksix5c7j"
+
+[deps]
+
+files=["res://TranslationsFiles/SmallGameWords.en.translation", "res://TranslationsFiles/SmallGameWords.es.translation", "res://TranslationsFiles/SmallGameWords.fr.translation", "res://TranslationsFiles/SmallGameWords.de.translation", "res://TranslationsFiles/SmallGameWords.cmn.translation", "res://TranslationsFiles/SmallGameWords.zh.translation", "res://TranslationsFiles/SmallGameWords.ja.translation"]
+
+source_file="res://TranslationsFiles/SmallGameWords.csv"
+dest_files=["res://TranslationsFiles/SmallGameWords.en.translation", "res://TranslationsFiles/SmallGameWords.es.translation", "res://TranslationsFiles/SmallGameWords.fr.translation", "res://TranslationsFiles/SmallGameWords.de.translation", "res://TranslationsFiles/SmallGameWords.cmn.translation", "res://TranslationsFiles/SmallGameWords.zh.translation", "res://TranslationsFiles/SmallGameWords.ja.translation"]
+
+[params]
+
+compress=true
+delimiter=0

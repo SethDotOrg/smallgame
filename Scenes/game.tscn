@@ -1,14 +1,16 @@
-[gd_scene load_steps=18 format=4 uid="uid://dh1vi354ld4w0"]
+[gd_scene load_steps=20 format=4 uid="uid://dh1vi354ld4w0"]
 
-[ext_resource type="PackedScene" uid="uid://dch38mlri3jq5" path="res://Scenes/player.tscn" id="1_ebmjs"]
+[ext_resource type="PackedScene" uid="uid://dch38mlri3jq5" path="res://Scenes/Player/player.tscn" id="1_ebmjs"]
+[ext_resource type="Script" uid="uid://dy5hu6b1npgew" path="res://Scripts/game.gd" id="1_ewbju"]
 [ext_resource type="Script" uid="uid://cjnbcyh8tg2ax" path="res://Scripts/global_variables.gd" id="1_i6g32"]
 [ext_resource type="Script" uid="uid://d1ylfk5mwhq7" path="res://Scripts/levels.gd" id="2_3dryh"]
-[ext_resource type="PackedScene" uid="uid://dukn0pfh53lu3" path="res://Scenes/enemy.tscn" id="2_qxrlw"]
+[ext_resource type="PackedScene" uid="uid://dquiphqrnhsrw" path="res://Scenes/UI/BaseUI.tscn" id="2_nnt18"]
+[ext_resource type="PackedScene" uid="uid://dukn0pfh53lu3" path="res://Scenes/Enemies/enemy.tscn" id="2_qxrlw"]
 [ext_resource type="Texture2D" uid="uid://crdfaj0r3d6ol" path="res://Sprites/Environment/TileSetForest.png" id="4_v158k"]
 [ext_resource type="Texture2D" uid="uid://jlqpalwgog6a" path="res://Sprites/WorldItems/Forest/TreeFallen1.png" id="5_rku1e"]
 [ext_resource type="Script" uid="uid://clss2xdk7q4dy" path="res://Scripts/EnemiesForLevel.gd" id="6_1l0tm"]
 [ext_resource type="Texture2D" uid="uid://dedya1tygw4j2" path="res://Sprites/WorldItems/Forest/Shrub1.png" id="6_rfjv2"]
-[ext_resource type="PackedScene" uid="uid://ccvounnbl351a" path="res://Scenes/gather_point.tscn" id="7_1l0tm"]
+[ext_resource type="PackedScene" uid="uid://ccvounnbl351a" path="res://Scenes/Levels/gather_point.tscn" id="7_1l0tm"]
 [ext_resource type="Texture2D" uid="uid://c6v7quru0cxl" path="res://Sprites/WorldItems/Forest/Tree1.png" id="7_1phco"]
 [ext_resource type="Script" uid="uid://bd2wbj1djmdcl" path="res://Scripts/enemy_toad.gd" id="7_v158k"]
 [ext_resource type="Texture2D" uid="uid://c0p4nfyrtog2j" path="res://Sprites/WorldItems/Forest/Sstump.png" id="8_nb51f"]
@@ -37,13 +39,17 @@ tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_h4fw4")
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_ewbju")
 
 [node name="GlobalVariables" type="Node" parent="."]
 script = ExtResource("1_i6g32")
 
-[node name="Player" parent="." instance=ExtResource("1_ebmjs")]
+[node name="Ui" parent="." instance=ExtResource("2_nnt18")]
+
+[node name="Player" parent="." node_paths=PackedStringArray("_base_ui") instance=ExtResource("1_ebmjs")]
 z_index = 2
 position = Vector2(552, 232)
+_base_ui = NodePath("../Ui")
 
 [node name="Levels" type="Node2D" parent="."]
 z_index = -3
@@ -2830,41 +2836,41 @@ texture = ExtResource("10_nb51f")
 position = Vector2(24, 586)
 texture = ExtResource("10_nb51f")
 
-[node name="EnemiesForLevel" type="Node2D" parent="." node_paths=PackedStringArray("enemy1")]
+[node name="EnemiesForLevel" type="Node2D" parent="Levels/Level1" node_paths=PackedStringArray("enemy1")]
 z_index = 1
 script = ExtResource("6_1l0tm")
 enemy1 = NodePath("EnemyToadLevel1")
 num_of_gather_points = 2
 
-[node name="EnemyToadLevel1" type="Node2D" parent="EnemiesForLevel"]
+[node name="EnemyToadLevel1" type="Node2D" parent="Levels/Level1/EnemiesForLevel"]
 script = ExtResource("7_v158k")
 enemy_1_scene = ExtResource("2_qxrlw")
 ememy_1_appear_smoke = ExtResource("14_nb51f")
 
-[node name="EnemyToadSpawnTimer" type="Timer" parent="EnemiesForLevel"]
+[node name="EnemyToadSpawnTimer" type="Timer" parent="Levels/Level1/EnemiesForLevel"]
 wait_time = 0.01
 autostart = true
 
-[node name="EnemySpawnLocation1" type="Marker2D" parent="EnemiesForLevel"]
+[node name="EnemySpawnLocation1" type="Marker2D" parent="Levels/Level1/EnemiesForLevel"]
 position = Vector2(560, -224)
 
-[node name="EnemySpawnLocation2" type="Marker2D" parent="EnemiesForLevel"]
+[node name="EnemySpawnLocation2" type="Marker2D" parent="Levels/Level1/EnemiesForLevel"]
 position = Vector2(576, 888)
 
-[node name="EnemySpawnLocation3" type="Marker2D" parent="EnemiesForLevel"]
+[node name="EnemySpawnLocation3" type="Marker2D" parent="Levels/Level1/EnemiesForLevel"]
 position = Vector2(-344, 408)
 
-[node name="EnemySpawnLocation4" type="Marker2D" parent="EnemiesForLevel"]
+[node name="EnemySpawnLocation4" type="Marker2D" parent="Levels/Level1/EnemiesForLevel"]
 position = Vector2(1464, 384)
 
-[node name="GatherPoints" type="Node2D" parent="."]
+[node name="GatherPoints" type="Node2D" parent="Levels/Level1"]
 
-[node name="GatherPoint" parent="GatherPoints" instance=ExtResource("7_1l0tm")]
+[node name="GatherPoint" parent="Levels/Level1/GatherPoints" instance=ExtResource("7_1l0tm")]
 position = Vector2(976, 209)
-ENEMY_1_TOTAL = 400
+ENEMY_1_TOTAL = 4
 
-[node name="GatherPoint2" parent="GatherPoints" instance=ExtResource("7_1l0tm")]
+[node name="GatherPoint2" parent="Levels/Level1/GatherPoints" instance=ExtResource("7_1l0tm")]
 position = Vector2(264, 512)
-ENEMY_1_TOTAL = 500
+ENEMY_1_TOTAL = 4
 
-[connection signal="timeout" from="EnemiesForLevel/EnemyToadSpawnTimer" to="EnemiesForLevel" method="_on_enemy_toad_spawn_timer_timeout"]
+[connection signal="timeout" from="Levels/Level1/EnemiesForLevel/EnemyToadSpawnTimer" to="Levels/Level1/EnemiesForLevel" method="_on_enemy_toad_spawn_timer_timeout"]

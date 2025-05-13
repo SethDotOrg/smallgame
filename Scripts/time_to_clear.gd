@@ -1,16 +1,25 @@
 extends Label
 
+var player_entered = false
+@onready var timer = $TimerToClearTimer
+@onready var starting_time = $TimerToClearTimer.wait_time
+#@export var player_entered_area_sound: AudioStreamPlayer2D
+@onready var player_entered_area_sound = $"../../PlayerEnteredAreaSound"
+
 func _ready():
-	var set_time = $TimerToClearTimer.wait_time
+	var set_time = timer.wait_time
 	var second = int (set_time)%60
 	self.text = "%02d" % second
 
 func _on_check_for_player_area_2d_body_entered(body):
-	if body.is_in_group("Player"):
-		$TimerToClearTimer.start()
+	if body.is_in_group("Player") and player_entered == false:
+		player_entered_area_sound.playing = true
+		self.visible = true
+		timer.start()
+		player_entered = true
 
 func time_left():
-	var time_left = $TimerToClearTimer.time_left
+	var time_left = timer.time_left
 	var second = int (time_left)%60
 	return second
 
