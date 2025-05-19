@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://b7mv57rf7akhi"]
+[gd_scene load_steps=3 format=3 uid="uid://b7mv57rf7akhi"]
 
+[ext_resource type="Script" uid="uid://c1qqg3pvhehp5" path="res://Scripts/UI/level_select.gd" id="1_kxjdg"]
 [ext_resource type="Texture2D" uid="uid://dhg72adi4gw07" path="res://Sprites/UI/Levels/Level1try1.png" id="1_sctym"]
 
 [node name="LevelSelect" type="Control"]
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_kxjdg")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 128
@@ -113,3 +115,6 @@ focus_neighbor_top = NodePath("../../BackButtonToOptionsMenu")
 focus_neighbor_right = NodePath("../Plus")
 focus_neighbor_bottom = NodePath("../../MusicVolume/Minus")
 texture_normal = ExtResource("1_sctym")
+
+[connection signal="pressed" from="CanvasLayer/GridContainer/Level1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="CanvasLayer/GridContainer/Level2" to="." method="_on_level_2_pressed"]
