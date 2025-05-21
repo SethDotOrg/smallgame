@@ -6,7 +6,7 @@ signal hit
 @export var _base_ui: Control
 @export var _weapon_animation_player: AnimationPlayer
 @export var speed = 125 # How fast the player will move (pixels/sec).
-@export var HEALTH = 4
+@export var HEALTH = 3 + GlobalVariables.health
 
 @onready var sword_up = $Weapon/SwordUp
 @onready var sword_down = $Weapon/SwordDown
