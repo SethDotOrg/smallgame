@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfxh11yg04ypb"]
+
+[ext_resource type="Script" uid="uid://dwo0cwp5ayess" path="res://Scripts/UI/weapon_select.gd" id="1_mbusc"]
+[ext_resource type="Texture2D" uid="uid://opx2xg8oo7fn" path="res://Sprites/weapons/sword/sword1.png" id="2_8fvm6"]
+[ext_resource type="Texture2D" uid="uid://dwsv1drmxk4b3" path="res://Sprites/weapons/axe/axe1.png" id="3_x251i"]
+
+[node name="WeaponSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mbusc")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 128
+follow_viewport_scale = 2.0
+
+[node name="Title" type="RichTextLabel" parent="CanvasLayer"]
+offset_right = 1004.0
+offset_bottom = 131.0
+theme_override_font_sizes/normal_font_size = 94
+text = "Weapon Select"
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 352.0
+offset_top = 131.0
+offset_right = -448.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 32
+theme_override_constants/v_separation = 32
+columns = 3
+
+[node name="Weapon1" type="TextureButton" parent="CanvasLayer/GridContainer"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+texture_normal = ExtResource("2_8fvm6")
+
+[node name="Weapon2" type="TextureButton" parent="CanvasLayer/GridContainer"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+texture_normal = ExtResource("3_x251i")
+
+[connection signal="pressed" from="CanvasLayer/GridContainer/Weapon1" to="." method="_on_weapon_1_pressed"]
+[connection signal="pressed" from="CanvasLayer/GridContainer/Weapon2" to="." method="_on_weapon_2_pressed"]

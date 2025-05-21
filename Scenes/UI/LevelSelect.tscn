@@ -38,82 +38,11 @@ columns = 3
 [node name="Level1" type="TextureButton" parent="CanvasLayer/GridContainer"]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
-focus_neighbor_left = NodePath("../Plus")
-focus_neighbor_top = NodePath("../../BackButtonToOptionsMenu")
-focus_neighbor_right = NodePath("../Plus")
-focus_neighbor_bottom = NodePath("../../MusicVolume/Minus")
 texture_normal = ExtResource("1_sctym")
 
 [node name="Level2" type="TextureButton" parent="CanvasLayer/GridContainer"]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
-focus_neighbor_left = NodePath("../Plus")
-focus_neighbor_top = NodePath("../../BackButtonToOptionsMenu")
-focus_neighbor_right = NodePath("../Plus")
-focus_neighbor_bottom = NodePath("../../MusicVolume/Minus")
-texture_normal = ExtResource("1_sctym")
-
-[node name="Level3" type="TextureButton" parent="CanvasLayer/GridContainer"]
-custom_minimum_size = Vector2(32, 0)
-layout_mode = 2
-focus_neighbor_left = NodePath("../Plus")
-focus_neighbor_top = NodePath("../../BackButtonToOptionsMenu")
-focus_neighbor_right = NodePath("../Plus")
-focus_neighbor_bottom = NodePath("../../MusicVolume/Minus")
-texture_normal = ExtResource("1_sctym")
-
-[node name="Level4" type="TextureButton" parent="CanvasLayer/GridContainer"]
-custom_minimum_size = Vector2(32, 0)
-layout_mode = 2
-focus_neighbor_left = NodePath("../Plus")
-focus_neighbor_top = NodePath("../../BackButtonToOptionsMenu")
-focus_neighbor_right = NodePath("../Plus")
-focus_neighbor_bottom = NodePath("../../MusicVolume/Minus")
-texture_normal = ExtResource("1_sctym")
-
-[node name="Level5" type="TextureButton" parent="CanvasLayer/GridContainer"]
-custom_minimum_size = Vector2(32, 0)
-layout_mode = 2
-focus_neighbor_left = NodePath("../Plus")
-focus_neighbor_top = NodePath("../../BackButtonToOptionsMenu")
-focus_neighbor_right = NodePath("../Plus")
-focus_neighbor_bottom = NodePath("../../MusicVolume/Minus")
-texture_normal = ExtResource("1_sctym")
-
-[node name="Level6" type="TextureButton" parent="CanvasLayer/GridContainer"]
-custom_minimum_size = Vector2(32, 0)
-layout_mode = 2
-focus_neighbor_left = NodePath("../Plus")
-focus_neighbor_top = NodePath("../../BackButtonToOptionsMenu")
-focus_neighbor_right = NodePath("../Plus")
-focus_neighbor_bottom = NodePath("../../MusicVolume/Minus")
-texture_normal = ExtResource("1_sctym")
-
-[node name="Level7" type="TextureButton" parent="CanvasLayer/GridContainer"]
-custom_minimum_size = Vector2(32, 0)
-layout_mode = 2
-focus_neighbor_left = NodePath("../Plus")
-focus_neighbor_top = NodePath("../../BackButtonToOptionsMenu")
-focus_neighbor_right = NodePath("../Plus")
-focus_neighbor_bottom = NodePath("../../MusicVolume/Minus")
-texture_normal = ExtResource("1_sctym")
-
-[node name="Level8" type="TextureButton" parent="CanvasLayer/GridContainer"]
-custom_minimum_size = Vector2(32, 0)
-layout_mode = 2
-focus_neighbor_left = NodePath("../Plus")
-focus_neighbor_top = NodePath("../../BackButtonToOptionsMenu")
-focus_neighbor_right = NodePath("../Plus")
-focus_neighbor_bottom = NodePath("../../MusicVolume/Minus")
-texture_normal = ExtResource("1_sctym")
-
-[node name="Level9" type="TextureButton" parent="CanvasLayer/GridContainer"]
-custom_minimum_size = Vector2(32, 0)
-layout_mode = 2
-focus_neighbor_left = NodePath("../Plus")
-focus_neighbor_top = NodePath("../../BackButtonToOptionsMenu")
-focus_neighbor_right = NodePath("../Plus")
-focus_neighbor_bottom = NodePath("../../MusicVolume/Minus")
 texture_normal = ExtResource("1_sctym")
 
 [connection signal="pressed" from="CanvasLayer/GridContainer/Level1" to="." method="_on_level_1_pressed"]

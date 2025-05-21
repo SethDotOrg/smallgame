@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxrdl1kdf4hpi"
-path="res://.godot/imported/swordprototype.png-6de1e474e558f59eaf0f090ce57c1010.ctex"
+uid="uid://dwsv1drmxk4b3"
+path="res://.godot/imported/axe1.png-dd8ee484a6712a88a2420a4c6080a708.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/weapons/sword for prototype/swordprototype.png"
-dest_files=["res://.godot/imported/swordprototype.png-6de1e474e558f59eaf0f090ce57c1010.ctex"]
+source_file="res://Sprites/weapons/axe/axe1.png"
+dest_files=["res://.godot/imported/axe1.png-dd8ee484a6712a88a2420a4c6080a708.ctex"]
 
 [params]
 
