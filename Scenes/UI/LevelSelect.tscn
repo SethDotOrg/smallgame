@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7mv57rf7akhi"]
+
+[ext_resource type="Script" uid="uid://c1qqg3pvhehp5" path="res://Scripts/UI/level_select.gd" id="1_kxjdg"]
+[ext_resource type="Texture2D" uid="uid://dhg72adi4gw07" path="res://Sprites/UI/Levels/Level1try1.png" id="1_sctym"]
+
+[node name="LevelSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kxjdg")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 128
+follow_viewport_scale = 2.0
+
+[node name="Title" type="RichTextLabel" parent="CanvasLayer"]
+offset_right = 1004.0
+offset_bottom = 131.0
+theme_override_font_sizes/normal_font_size = 94
+text = "Level Select"
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 352.0
+offset_top = 131.0
+offset_right = -448.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 32
+theme_override_constants/v_separation = 32
+columns = 3
+
+[node name="Level1" type="TextureButton" parent="CanvasLayer/GridContainer"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+texture_normal = ExtResource("1_sctym")
+
+[node name="Level2" type="TextureButton" parent="CanvasLayer/GridContainer"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+texture_normal = ExtResource("1_sctym")
+
+[connection signal="pressed" from="CanvasLayer/GridContainer/Level1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="CanvasLayer/GridContainer/Level2" to="." method="_on_level_2_pressed"]

@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://c7a6tfk47uxt1"]
+
+[ext_resource type="Texture2D" uid="uid://dghgvto1y1asr" path="res://Sprites/UI/ArrowBack Unpressed.png" id="1_1878f"]
+[ext_resource type="Script" uid="uid://bdx5ix6wo2lyc" path="res://Scripts/UI/upgrades.gd" id="1_ss206"]
+[ext_resource type="Texture2D" uid="uid://bgwmvfw8krfuw" path="res://Sprites/UI/ArrowBack pressed.png" id="2_ss206"]
+[ext_resource type="Texture2D" uid="uid://s3lqy4udgerl" path="res://Sprites/UI/ArrowBack Unpressed Focussed.png" id="3_e6vcm"]
+[ext_resource type="Texture2D" uid="uid://b3fmmri54cirx" path="res://Sprites/UI/Plus Unpressed.png" id="7_y82po"]
+[ext_resource type="Texture2D" uid="uid://s1yw1r8hkudh" path="res://Sprites/UI/Plus Pressed.png" id="8_bumd1"]
+[ext_resource type="Texture2D" uid="uid://brulh301wapic" path="res://Sprites/UI/Plus Unpressed Focussed.png" id="9_a6y6k"]
+
+[node name="Upgrades" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ss206")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 128
+follow_viewport_scale = 2.0
+
+[node name="Title" type="RichTextLabel" parent="CanvasLayer"]
+offset_right = 1004.0
+offset_bottom = 131.0
+theme_override_font_sizes/normal_font_size = 94
+text = "Upgrades
+"
+
+[node name="AudioMenu" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 32.0
+offset_top = -137.0
+offset_right = 357.0
+offset_bottom = 137.0
+grow_vertical = 2
+
+[node name="BackButtonToOptionsMenu" type="TextureButton" parent="CanvasLayer/AudioMenu"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+texture_normal = ExtResource("1_1878f")
+texture_pressed = ExtResource("2_ss206")
+texture_hover = ExtResource("3_e6vcm")
+
+[node name="HealthLabel" type="RichTextLabel" parent="CanvasLayer/AudioMenu"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Health"
+fit_content = true
+
+[node name="Health" type="HFlowContainer" parent="CanvasLayer/AudioMenu"]
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AudioMenu/Health"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 10.0
+step = 1.0
+
+[node name="Plus" type="TextureButton" parent="CanvasLayer/AudioMenu/Health"]
+layout_mode = 2
+texture_normal = ExtResource("7_y82po")
+texture_pressed = ExtResource("8_bumd1")
+texture_hover = ExtResource("9_a6y6k")
+
+[connection signal="pressed" from="CanvasLayer/AudioMenu/BackButtonToOptionsMenu" to="." method="_on_back_button_to_options_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/AudioMenu/Health/Plus" to="." method="_on_plus_pressed"]

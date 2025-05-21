@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://duhgxjox3tyjg"]
+[gd_scene load_steps=11 format=3 uid="uid://duhgxjox3tyjg"]
 
 [ext_resource type="Script" uid="uid://c2kvtjqoqqruo" path="res://Scripts/UI/pause_ui.gd" id="1_mx7s6"]
+[ext_resource type="Texture2D" uid="uid://dghgvto1y1asr" path="res://Sprites/UI/ArrowBack Unpressed.png" id="2_rqg0w"]
+[ext_resource type="Texture2D" uid="uid://bgwmvfw8krfuw" path="res://Sprites/UI/ArrowBack pressed.png" id="3_lsyt1"]
+[ext_resource type="Texture2D" uid="uid://s3lqy4udgerl" path="res://Sprites/UI/ArrowBack Unpressed Focussed.png" id="4_j4q0y"]
+[ext_resource type="Texture2D" uid="uid://dsqavx8b8uq4u" path="res://Sprites/UI/Minus Unpressed.png" id="5_mxhi6"]
+[ext_resource type="Texture2D" uid="uid://cmo02xawpn07p" path="res://Sprites/UI/Minus Pressed.png" id="6_ape4p"]
+[ext_resource type="Texture2D" uid="uid://dsve8q0hvvhf7" path="res://Sprites/UI/Minus Unpressed Focussed.png" id="7_aa0mk"]
+[ext_resource type="Texture2D" uid="uid://b3fmmri54cirx" path="res://Sprites/UI/Plus Unpressed.png" id="8_f88ed"]
+[ext_resource type="Texture2D" uid="uid://s1yw1r8hkudh" path="res://Sprites/UI/Plus Pressed.png" id="9_j6y2s"]
+[ext_resource type="Texture2D" uid="uid://brulh301wapic" path="res://Sprites/UI/Plus Unpressed Focussed.png" id="10_6m00i"]
 
 [node name="PauseUI" type="Control"]
 process_mode = 2
@@ -37,5 +46,273 @@ layout_mode = 2
 focus_neighbor_bottom = NodePath("../Resume")
 text = "MENU_EXIT_TO_MAIN_MENU"
 
+[node name="OptionsMenu" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 32.0
+offset_top = -137.0
+offset_right = 357.0
+offset_bottom = 137.0
+grow_vertical = 2
+
+[node name="BackButtonMainMenu" type="TextureButton" parent="OptionsMenu"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+focus_neighbor_top = NodePath("../AudioOptions")
+focus_neighbor_bottom = NodePath("../AudioOptions")
+texture_normal = ExtResource("2_rqg0w")
+texture_pressed = ExtResource("3_lsyt1")
+texture_hover = ExtResource("4_j4q0y")
+
+[node name="AudioOptions" type="Button" parent="OptionsMenu"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../BackButtonMainMenu")
+focus_neighbor_bottom = NodePath("../BackButtonMainMenu")
+text = "MENU_AUDIO_OPTIONS"
+
+[node name="MoveUpContainer" type="HBoxContainer" parent="OptionsMenu"]
+layout_mode = 2
+
+[node name="Control1" type="Label" parent="OptionsMenu/MoveUpContainer"]
+layout_mode = 2
+text = "CONTROL_MOVE_UP"
+
+[node name="Control2" type="Label" parent="OptionsMenu/MoveUpContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "MOVE_UP"
+
+[node name="MoveDownContainer" type="HBoxContainer" parent="OptionsMenu"]
+layout_mode = 2
+
+[node name="Control1" type="Label" parent="OptionsMenu/MoveDownContainer"]
+layout_mode = 2
+text = "CONTROL_MOVE_DOWN"
+
+[node name="Control2" type="Label" parent="OptionsMenu/MoveDownContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "MOVE_DOWN"
+
+[node name="MoveLeftContainer" type="HBoxContainer" parent="OptionsMenu"]
+layout_mode = 2
+
+[node name="Control1" type="Label" parent="OptionsMenu/MoveLeftContainer"]
+layout_mode = 2
+text = "CONTROL_MOVE_LEFT"
+
+[node name="Control2" type="Label" parent="OptionsMenu/MoveLeftContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "MOVE_LEFT"
+
+[node name="MoveRightContainer" type="HBoxContainer" parent="OptionsMenu"]
+layout_mode = 2
+
+[node name="Control1" type="Label" parent="OptionsMenu/MoveRightContainer"]
+layout_mode = 2
+text = "CONTROL_MOVE_RIGHT"
+
+[node name="Control2" type="Label" parent="OptionsMenu/MoveRightContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "MOVE_RIGHT"
+
+[node name="AttackUpContainer" type="HBoxContainer" parent="OptionsMenu"]
+layout_mode = 2
+
+[node name="Control1" type="Label" parent="OptionsMenu/AttackUpContainer"]
+layout_mode = 2
+text = "CONTROL_ATTACK_UP"
+
+[node name="Control2" type="Label" parent="OptionsMenu/AttackUpContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "ATTACK_UP"
+
+[node name="AttackDownContainer" type="HBoxContainer" parent="OptionsMenu"]
+layout_mode = 2
+
+[node name="Control1" type="Label" parent="OptionsMenu/AttackDownContainer"]
+layout_mode = 2
+text = "CONTROL_ATTACK_DOWN"
+
+[node name="Control2" type="Label" parent="OptionsMenu/AttackDownContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "ATTACK_DOWN"
+
+[node name="AttackLeftContainer" type="HBoxContainer" parent="OptionsMenu"]
+layout_mode = 2
+
+[node name="Control1" type="Label" parent="OptionsMenu/AttackLeftContainer"]
+layout_mode = 2
+text = "CONTROL_ATTACK_LEFT"
+
+[node name="Control2" type="Label" parent="OptionsMenu/AttackLeftContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "ATTACK_LEFT"
+
+[node name="AttackRightContainer" type="HBoxContainer" parent="OptionsMenu"]
+layout_mode = 2
+
+[node name="Control1" type="Label" parent="OptionsMenu/AttackRightContainer"]
+layout_mode = 2
+text = "CONTROL_ATTACK_RIGHT"
+
+[node name="Control2" type="Label" parent="OptionsMenu/AttackRightContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "ATTACK_RIGHT"
+
+[node name="PauseContainer" type="HBoxContainer" parent="OptionsMenu"]
+layout_mode = 2
+
+[node name="Control1" type="Label" parent="OptionsMenu/PauseContainer"]
+layout_mode = 2
+text = "CONTROL_PAUSE"
+
+[node name="Control2" type="Label" parent="OptionsMenu/PauseContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "PAUSE"
+
+[node name="AudioMenu" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 32.0
+offset_top = -137.0
+offset_right = 357.0
+offset_bottom = 137.0
+grow_vertical = 2
+
+[node name="BackButtonToOptionsMenu" type="TextureButton" parent="AudioMenu"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+focus_neighbor_top = NodePath("../SFXVolume/Minus")
+focus_neighbor_bottom = NodePath("../MasterVolume/Minus")
+texture_normal = ExtResource("2_rqg0w")
+texture_pressed = ExtResource("3_lsyt1")
+texture_hover = ExtResource("4_j4q0y")
+
+[node name="MasterVolumeLabel" type="RichTextLabel" parent="AudioMenu"]
+layout_mode = 2
+bbcode_enabled = true
+text = "MASTER_VOLUME"
+fit_content = true
+
+[node name="MasterVolume" type="HFlowContainer" parent="AudioMenu"]
+layout_mode = 2
+
+[node name="Minus" type="TextureButton" parent="AudioMenu/MasterVolume"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+focus_neighbor_left = NodePath("../Plus")
+focus_neighbor_top = NodePath("../../BackButtonToOptionsMenu")
+focus_neighbor_right = NodePath("../Plus")
+focus_neighbor_bottom = NodePath("../../MusicVolume/Minus")
+texture_normal = ExtResource("5_mxhi6")
+texture_pressed = ExtResource("6_ape4p")
+texture_hover = ExtResource("7_aa0mk")
+
+[node name="ProgressBar" type="ProgressBar" parent="AudioMenu/MasterVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+step = 5.0
+
+[node name="Plus" type="TextureButton" parent="AudioMenu/MasterVolume"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Minus")
+focus_neighbor_top = NodePath("../../BackButtonToOptionsMenu")
+focus_neighbor_right = NodePath("../Minus")
+focus_neighbor_bottom = NodePath("../../MusicVolume/Plus")
+texture_normal = ExtResource("8_f88ed")
+texture_pressed = ExtResource("9_j6y2s")
+texture_hover = ExtResource("10_6m00i")
+
+[node name="MusicVolumeLabel" type="RichTextLabel" parent="AudioMenu"]
+layout_mode = 2
+bbcode_enabled = true
+text = "MUSIC_VOLUME"
+fit_content = true
+
+[node name="MusicVolume" type="HFlowContainer" parent="AudioMenu"]
+layout_mode = 2
+
+[node name="Minus" type="TextureButton" parent="AudioMenu/MusicVolume"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+focus_neighbor_left = NodePath("../Plus")
+focus_neighbor_top = NodePath("../../MasterVolume/Minus")
+focus_neighbor_right = NodePath("../Plus")
+focus_neighbor_bottom = NodePath("../../SFXVolume/Minus")
+texture_normal = ExtResource("5_mxhi6")
+texture_pressed = ExtResource("6_ape4p")
+texture_hover = ExtResource("7_aa0mk")
+
+[node name="ProgressBar" type="ProgressBar" parent="AudioMenu/MusicVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+step = 5.0
+
+[node name="Plus" type="TextureButton" parent="AudioMenu/MusicVolume"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Minus")
+focus_neighbor_top = NodePath("../../MasterVolume/Plus")
+focus_neighbor_right = NodePath("../Minus")
+focus_neighbor_bottom = NodePath("../../SFXVolume/Plus")
+texture_normal = ExtResource("8_f88ed")
+texture_pressed = ExtResource("9_j6y2s")
+texture_hover = ExtResource("10_6m00i")
+
+[node name="SFXVolumeLabel" type="RichTextLabel" parent="AudioMenu"]
+layout_mode = 2
+bbcode_enabled = true
+text = "SFX_VOLUME"
+fit_content = true
+
+[node name="SFXVolume" type="HFlowContainer" parent="AudioMenu"]
+layout_mode = 2
+
+[node name="Minus" type="TextureButton" parent="AudioMenu/SFXVolume"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+focus_neighbor_left = NodePath("../Plus")
+focus_neighbor_top = NodePath("../../MusicVolume/Minus")
+focus_neighbor_right = NodePath("../Plus")
+focus_neighbor_bottom = NodePath("../../BackButtonToOptionsMenu")
+texture_normal = ExtResource("5_mxhi6")
+texture_pressed = ExtResource("6_ape4p")
+texture_hover = ExtResource("7_aa0mk")
+
+[node name="ProgressBar" type="ProgressBar" parent="AudioMenu/SFXVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+step = 5.0
+
+[node name="Plus" type="TextureButton" parent="AudioMenu/SFXVolume"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Minus")
+focus_neighbor_top = NodePath("../../MusicVolume/Plus")
+focus_neighbor_right = NodePath("../Minus")
+focus_neighbor_bottom = NodePath("../../BackButtonToOptionsMenu")
+texture_normal = ExtResource("8_f88ed")
+texture_pressed = ExtResource("9_j6y2s")
+texture_hover = ExtResource("10_6m00i")
+
 [connection signal="pressed" from="PauseOptions/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseOptions/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="PauseOptions/ExitToMainMenu" to="." method="_on_exit_to_main_menu_pressed"]
+[connection signal="pressed" from="OptionsMenu/BackButtonMainMenu" to="." method="_on_back_button_main_menu_pressed"]
+[connection signal="pressed" from="OptionsMenu/AudioOptions" to="." method="_on_audio_options_pressed"]
+[connection signal="pressed" from="AudioMenu/BackButtonToOptionsMenu" to="." method="_on_back_button_to_options_menu_pressed"]

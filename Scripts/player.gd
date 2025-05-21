@@ -6,7 +6,7 @@ signal hit
 @export var _base_ui: Control
 @export var _weapon_animation_player: AnimationPlayer
 @export var speed = 125 # How fast the player will move (pixels/sec).
-@export var HEALTH = 4
+@export var HEALTH = 3 + GlobalVariables.health
 
 @onready var sword_up = $Weapon/SwordUp
 @onready var sword_down = $Weapon/SwordDown
@@ -26,6 +26,19 @@ var _health_ui
 
 var health: int
 
+func _change_weapon(): #TEMPORARY
+	if GlobalVariables.weapon == "sword":
+		sword_up.texture = load("res://Sprites/weapons/sword/sword1.png")
+		sword_down.texture = load("res://Sprites/weapons/sword/sword1.png")
+		sword_left.texture = load("res://Sprites/weapons/sword/sword1.png")
+		sword_right.texture = load("res://Sprites/weapons/sword/sword1.png")
+	elif GlobalVariables.weapon == "axe":
+		sword_up.texture = load("res://Sprites/weapons/axe/axe1.png")
+		sword_down.texture = load("res://Sprites/weapons/axe/axe1.png")
+		sword_left.texture = load("res://Sprites/weapons/axe/axe1.png")
+		sword_right.texture = load("res://Sprites/weapons/axe/axe1.png")
+
+
 func _ready():
 	_state_machine.init(self)
 	_score_ui = _base_ui.get_score_ui()
@@ -33,6 +46,7 @@ func _ready():
 	_health_ui = _base_ui.get_health_ui()
 	health = HEALTH
 	_health_ui._set_health(health)
+	_change_weapon()
 	
 func _unhandled_input(event: InputEvent):
 	_state_machine.process_input(event)
