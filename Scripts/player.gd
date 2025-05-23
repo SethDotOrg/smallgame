@@ -5,6 +5,7 @@ signal hit
 
 @export var _base_ui: Control
 @export var _weapon_animation_player: AnimationPlayer
+@export var _AP_Hit_Flash: AnimationPlayer
 @export var speed = 125 # How fast the player will move (pixels/sec).
 @export var HEALTH = 3 + GlobalVariables.health
 
@@ -139,6 +140,7 @@ func _on_area_disabled_timer_timeout():#turn on and off the area2d to check for 
 
 func _on_enemy_check_area_2d_body_entered(body):
 	if body.is_in_group("Enemy"):
+		_AP_Hit_Flash.play("HitFlash")
 		#push the player back in the direction the enemy was moving
 		var knockback_direction = body.global_position.direction_to(self.global_position) #get the direction from the enemy touched by to the player
 		self.global_position += knockback_direction * 40 #move the player back in that direction by a strength
