@@ -129,7 +129,7 @@ func _on_area_for_enemy_follow_body_entered(body):#when enemy enters the enemy f
 		#print("body entered")
 func _on_area_for_enemy_follow_body_exited(body):#after a second when the enemy leaves the follow area 2d set the follow point position to enemies assigned gather point
 	if body.is_in_group("Enemy"):
-		await get_tree().create_timer(1.0).timeout
+		await get_tree().create_timer(1.0).timeout #seconds
 		if body != null:
 			body.set_target_position_to_gather_point()
 
@@ -140,8 +140,8 @@ func _on_area_disabled_timer_timeout():#turn on and off the area2d to check for 
 
 func _on_enemy_check_area_2d_body_entered(body):
 	if body.is_in_group("Enemy"):
-		_AP_Hit_Flash.play("HitFlash")
 		#push the player back in the direction the enemy was moving
+		handle_hurt_box()
 		var knockback_direction = body.global_position.direction_to(self.global_position) #get the direction from the enemy touched by to the player
 		self.global_position += knockback_direction * 40 #move the player back in that direction by a strength
 		if _allow_hit_timer.time_left <=0:
@@ -154,3 +154,11 @@ func _on_enemy_check_area_2d_body_entered(body):
 	_enemy_check_collision_shape.set_deferred("disabled", true) #basically turn off the collision shape so we dont get more then one input at the end of the frame
 func _on_enemy_check_area_2d_body_exited(body):
 	_enemy_check_collision_shape.set_deferred("disabled", false)
+
+func handle_hurt_box():
+	#play animation for hit flash
+	_AP_Hit_Flash.play("HitFlash")
+	#then while that animation plays, the player will be invincible to enemy attacks
+	_enemy_check_collision_shape.disabled = true
+	await get_tree().create_timer(_AP_Hit_Flash.current_animation_length).timeout
+	_enemy_check_collision_shape.disabled = false
