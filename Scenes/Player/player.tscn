@@ -19,6 +19,7 @@ radius = 9.0
 height = 33.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jhyir"]
+resource_local_to_scene = true
 shader = ExtResource("6_gk6dx")
 shader_parameter/Enabled = false
 shader_parameter/Tint = Color(0.498039, 1, 1, 1)
