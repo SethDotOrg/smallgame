@@ -9,3 +9,7 @@ var weapon: String
 
 #player upgrades
 var health: int
+
+@export var UI: Control
+func update_score_ui():
+	UI.get_score_ui().update_score()

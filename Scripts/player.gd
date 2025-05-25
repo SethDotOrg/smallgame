@@ -4,15 +4,10 @@ extends CharacterBody2D
 signal hit
 
 @export var _base_ui: Control
-@export var _weapon_animation_player: AnimationPlayer
 @export var _AP_Hit_Flash: AnimationPlayer
 @export var speed = 125 # How fast the player will move (pixels/sec).
 @export var HEALTH = 3 + GlobalVariables.health
 
-@onready var sword_up = $Weapon/SwordUp
-@onready var sword_down = $Weapon/SwordDown
-@onready var sword_left = $Weapon/SwordLeft
-@onready var sword_right = $Weapon/SwordRight
 @onready var _player_sprite = $AnimatedSprite2D
 @onready var _enemy_check_collision_shape = $EnemyCheckArea2D/EnemyCollisionShape2D
 @onready var _state_machine = $PlayerStateMachine
@@ -29,15 +24,9 @@ var health: int
 
 func _change_weapon(): #TEMPORARY
 	if GlobalVariables.weapon == "sword":
-		sword_up.texture = load("res://Sprites/weapons/sword/sword1.png")
-		sword_down.texture = load("res://Sprites/weapons/sword/sword1.png")
-		sword_left.texture = load("res://Sprites/weapons/sword/sword1.png")
-		sword_right.texture = load("res://Sprites/weapons/sword/sword1.png")
+		pass #set weapon
 	elif GlobalVariables.weapon == "axe":
-		sword_up.texture = load("res://Sprites/weapons/axe/axe1.png")
-		sword_down.texture = load("res://Sprites/weapons/axe/axe1.png")
-		sword_left.texture = load("res://Sprites/weapons/axe/axe1.png")
-		sword_right.texture = load("res://Sprites/weapons/axe/axe1.png")
+		pass #set weapon
 
 
 func _ready():
@@ -58,70 +47,6 @@ func _process(delta: float):
 func _physics_process(delta):
 	_state_machine.process_physics(delta)
 	
-	#check to see the input and if the player is attacking
-	if Input.is_action_just_pressed("attack_right") and GlobalVariables.player_attacking == false:
-		GlobalVariables.player_attacking = true
-		_weapon_animation_player.play("sword_right_animation")
-		await _weapon_animation_player.animation_finished
-		GlobalVariables.player_attacking = false
-	if Input.is_action_just_pressed("attack_left") and GlobalVariables.player_attacking == false:
-		GlobalVariables.player_attacking = true
-		_weapon_animation_player.play("sword_left_animation")
-		await _weapon_animation_player.animation_finished
-		GlobalVariables.player_attacking = false
-	if Input.is_action_just_pressed("attack_down") and GlobalVariables.player_attacking == false:
-		GlobalVariables.player_attacking = true
-		_weapon_animation_player.play("sword_down_animation")
-		await _weapon_animation_player.animation_finished
-		GlobalVariables.player_attacking = false
-	if Input.is_action_just_pressed("attack_up") and GlobalVariables.player_attacking == false:
-		GlobalVariables.player_attacking = true
-		_weapon_animation_player.play("sword_up_animation")
-		await _weapon_animation_player.animation_finished
-		GlobalVariables.player_attacking = false
-	
-
-#handle sword attack. We need a system that will abstract some of this
-func _on_sword_up_area_2d_body_entered(body):
-	if body.is_in_group("Enemy"):
-		body.kill_enemy(self.global_position)
-		body.get_gather_point().decrease_assigned_enemies_num()
-		GlobalVariables.score += 1
-		_score_ui.update_score()
-		check_score_for_sword()
-func _on_sword_down_area_2d_body_entered(body):
-	if body.is_in_group("Enemy"):
-		body.kill_enemy(self.global_position)
-		body.get_gather_point().decrease_assigned_enemies_num()
-		GlobalVariables.score += 1
-		_score_ui.update_score()
-		check_score_for_sword()
-func _on_sword_left_area_2d_body_entered(body):
-	if body.is_in_group("Enemy"):
-		body.kill_enemy(self.global_position)
-		body.get_gather_point().decrease_assigned_enemies_num()
-		GlobalVariables.score += 1
-		_score_ui.update_score()
-		check_score_for_sword()
-func _on_sword_right_area_2d_body_entered(body):
-	if body.is_in_group("Enemy"):
-		body.kill_enemy(self.global_position)
-		body.get_gather_point().decrease_assigned_enemies_num()
-		GlobalVariables.score += 1
-		_score_ui.update_score()
-		check_score_for_sword()
-
-func check_score_for_sword(): #this is temp for upgrading the sword
-	if GlobalVariables.score == 10 or GlobalVariables.score == 50 or GlobalVariables.score == 100:
-		sword_up.scale.x += 1
-		sword_up.scale.y += 1
-		sword_down.scale.x += 1
-		sword_down.scale.y += 1
-		sword_left.scale.x += 1
-		sword_left.scale.y += 1
-		sword_right.scale.x += 1
-		sword_right.scale.y += 1
-		_weapon_animation_player.speed_scale -= 0.2
 
 func _on_area_for_enemy_follow_body_entered(body):#when enemy enters the enemy follow area 2d set the enemy follow point to the player
 	if body.is_in_group("Enemy"):

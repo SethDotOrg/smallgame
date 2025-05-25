@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cx7ft6np411b7"]
+
+[ext_resource type="Script" uid="uid://fpy1m12it1yb" path="res://Scripts/Weapons/BaseWeapon.gd" id="1_2gcr6"]
+[ext_resource type="Texture2D" uid="uid://opx2xg8oo7fn" path="res://Sprites/weapons/sword/sword1.png" id="2_jmtjv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qruaw"]
+radius = 8.0
+height = 32.0
+
+[node name="BaseWeapon" type="Node2D"]
+script = ExtResource("1_2gcr6")
+
+[node name="AnimationPlayerWeapon" type="AnimationPlayer" parent="."]
+
+[node name="PivotPoint" type="Node2D" parent="."]
+
+[node name="Weapon" type="Sprite2D" parent="PivotPoint"]
+visible = false
+position = Vector2(0, -8)
+texture = ExtResource("2_jmtjv")
+offset = Vector2(0, -15)
+
+[node name="Area2D" type="Area2D" parent="PivotPoint/Weapon"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PivotPoint/Weapon/Area2D"]
+position = Vector2(0, -16)
+shape = SubResource("CapsuleShape2D_qruaw")
+
+[connection signal="body_entered" from="PivotPoint/Weapon/Area2D" to="." method="_on_area_2d_body_entered"]
