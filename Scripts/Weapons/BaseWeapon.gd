@@ -8,29 +8,55 @@ extends Node2D
 	
 func _physics_process(delta):
 	
-	#check to see the input and if the player is attacking
-	if Input.is_action_just_pressed("attack_right") and GlobalVariables.player_attacking == false:
+	#check to see the input and if the player is attacking for attack animation 1
+	if !Input.is_action_pressed("secondary_attack") and Input.is_action_just_pressed("attack_right") and GlobalVariables.player_attacking == false:
 		GlobalVariables.player_attacking = true
 		pivot_point.rotation = deg_to_rad(90)
 		animation_player_weapon.play("Attack1")
 		await animation_player_weapon.animation_finished
 		GlobalVariables.player_attacking = false
-	if Input.is_action_just_pressed("attack_left") and GlobalVariables.player_attacking == false:
+	if !Input.is_action_pressed("secondary_attack") and Input.is_action_just_pressed("attack_left") and GlobalVariables.player_attacking == false:
 		GlobalVariables.player_attacking = true
 		pivot_point.rotation = deg_to_rad(270)
 		animation_player_weapon.play("Attack1")
 		await animation_player_weapon.animation_finished
 		GlobalVariables.player_attacking = false
-	if Input.is_action_just_pressed("attack_down") and GlobalVariables.player_attacking == false:
+	if !Input.is_action_pressed("secondary_attack") and Input.is_action_just_pressed("attack_down") and GlobalVariables.player_attacking == false:
 		GlobalVariables.player_attacking = true
 		pivot_point.rotation = deg_to_rad(180)
 		animation_player_weapon.play("Attack1")
 		await animation_player_weapon.animation_finished
 		GlobalVariables.player_attacking = false
-	if Input.is_action_just_pressed("attack_up") and GlobalVariables.player_attacking == false:
+	if !Input.is_action_pressed("secondary_attack") and Input.is_action_just_pressed("attack_up") and GlobalVariables.player_attacking == false:
 		GlobalVariables.player_attacking = true
 		pivot_point.rotation = deg_to_rad(0)
 		animation_player_weapon.play("Attack1")
+		await animation_player_weapon.animation_finished
+		GlobalVariables.player_attacking = false
+	
+	#check to see the input and if the player is attacking for attack animation 2
+	if Input.is_action_pressed("secondary_attack") and Input.is_action_just_pressed("attack_right") and GlobalVariables.player_attacking == false:
+		GlobalVariables.player_attacking = true
+		pivot_point.rotation = deg_to_rad(90)
+		animation_player_weapon.play("Attack2")
+		await animation_player_weapon.animation_finished
+		GlobalVariables.player_attacking = false
+	if Input.is_action_pressed("secondary_attack") and Input.is_action_just_pressed("attack_left") and GlobalVariables.player_attacking == false:
+		GlobalVariables.player_attacking = true
+		pivot_point.rotation = deg_to_rad(270)
+		animation_player_weapon.play("Attack2")
+		await animation_player_weapon.animation_finished
+		GlobalVariables.player_attacking = false
+	if Input.is_action_pressed("secondary_attack") and Input.is_action_just_pressed("attack_down") and GlobalVariables.player_attacking == false:
+		GlobalVariables.player_attacking = true
+		pivot_point.rotation = deg_to_rad(180)
+		animation_player_weapon.play("Attack2")
+		await animation_player_weapon.animation_finished
+		GlobalVariables.player_attacking = false
+	if Input.is_action_pressed("secondary_attack") and Input.is_action_just_pressed("attack_up") and GlobalVariables.player_attacking == false:
+		GlobalVariables.player_attacking = true
+		pivot_point.rotation = deg_to_rad(0)
+		animation_player_weapon.play("Attack2")
 		await animation_player_weapon.animation_finished
 		GlobalVariables.player_attacking = false
 	
