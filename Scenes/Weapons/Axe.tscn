@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1er6a72ier06"]
+
+[ext_resource type="Script" uid="uid://cxv7ycrljtssq" path="res://Scripts/Weapons/Axe/axe.gd" id="1_wqajm"]
+[ext_resource type="Texture2D" uid="uid://dwsv1drmxk4b3" path="res://Sprites/weapons/axe/axe1.png" id="2_q5vg7"]
+[ext_resource type="AudioStream" uid="uid://bq8bs0mchl7m5" path="res://Audio/SFX/SwordSwing1.mp3" id="3_h0t45"]
+
+[sub_resource type="Animation" id="Animation_wqajm"]
+resource_name = "Attack1"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q5vg7"]
+_data = {
+&"Attack1": SubResource("Animation_wqajm")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h0t45"]
+radius = 8.0
+height = 16.0
+
+[node name="Axe" type="Node2D"]
+script = ExtResource("1_wqajm")
+
+[node name="AnimationPlayerWeapon" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_q5vg7")
+}
+
+[node name="PivotPoint" type="Node2D" parent="."]
+
+[node name="Axe" type="Sprite2D" parent="PivotPoint"]
+position = Vector2(0, -8)
+texture = ExtResource("2_q5vg7")
+offset = Vector2(0, -15)
+
+[node name="Area2D" type="Area2D" parent="PivotPoint/Axe"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PivotPoint/Axe/Area2D"]
+position = Vector2(-2, -24)
+shape = SubResource("CapsuleShape2D_h0t45")
+
+[node name="Slash" type="Sprite2D" parent="PivotPoint"]
+visible = false
+position = Vector2(0, -40)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_h0t45")
+
+[connection signal="body_entered" from="PivotPoint/Axe/Area2D" to="." method="_on_area_2d_body_entered"]

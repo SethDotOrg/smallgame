@@ -7,8 +7,8 @@
 [ext_resource type="Script" uid="uid://b08q1hadtp8ox" path="res://Scripts/PlayerStateMachine/idle.gd" id="4_8erm5"]
 [ext_resource type="Script" uid="uid://boyqpdoc0cox3" path="res://Scripts/PlayerStateMachine/walk.gd" id="5_f1ek2"]
 [ext_resource type="Shader" uid="uid://e42anfy4keux" path="res://Shaders/HitFlash.tres" id="6_gk6dx"]
+[ext_resource type="Script" uid="uid://bmwybxofc4i7h" path="res://Scripts/Weapons/weapon_manager.gd" id="6_jhyir"]
 [ext_resource type="Texture2D" uid="uid://cynpjxh48dfdt" path="res://Sprites/Shadow.png" id="6_x3wgy"]
-[ext_resource type="PackedScene" uid="uid://cytrojfe260yj" path="res://Scenes/Weapons/Sword.tscn" id="8_gk6dx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f1ek2"]
 radius = 8.0
@@ -129,6 +129,9 @@ script = ExtResource("5_f1ek2")
 idle_state = NodePath("../Idle")
 _animation_name = "Run"
 
+[node name="WeaponManager" type="Node2D" parent="."]
+script = ExtResource("6_jhyir")
+
 [node name="PlayerCollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_f1ek2")
 
@@ -160,8 +163,6 @@ debug_color = Color(0, 0.643137, 0.27451, 0.109804)
 [node name="AreaDisabledTimer" type="Timer" parent="AreaForEnemyFollow"]
 wait_time = 0.3
 autostart = true
-
-[node name="Sword" parent="." instance=ExtResource("8_gk6dx")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)

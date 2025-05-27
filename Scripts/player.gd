@@ -22,12 +22,6 @@ var _health_ui
 
 var health: int
 
-func _change_weapon(): #TEMPORARY
-	if GlobalVariables.weapon == "sword":
-		pass #set weapon
-	elif GlobalVariables.weapon == "axe":
-		pass #set weapon
-
 
 func _ready():
 	_state_machine.init(self)
@@ -36,7 +30,7 @@ func _ready():
 	_health_ui = _base_ui.get_health_ui()
 	health = HEALTH
 	_health_ui._set_health(health)
-	_change_weapon()
+	#_set_weapon()
 	
 func _unhandled_input(event: InputEvent):
 	_state_machine.process_input(event)

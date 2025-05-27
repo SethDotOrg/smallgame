@@ -21,6 +21,7 @@ texture = ExtResource("2_jmtjv")
 offset = Vector2(0, -15)
 
 [node name="Area2D" type="Area2D" parent="PivotPoint/Weapon"]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PivotPoint/Weapon/Area2D"]
 position = Vector2(0, -16)

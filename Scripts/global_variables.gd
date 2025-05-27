@@ -1,5 +1,6 @@
 extends Node
 
+
 var score = 0 
 var player_attacking:bool = false
 
@@ -10,6 +11,6 @@ var weapon: String
 #player upgrades
 var health: int
 
-@export var UI: Control
 func update_score_ui():
+	var UI = get_node("../Game/UI")
 	UI.get_score_ui().update_score()

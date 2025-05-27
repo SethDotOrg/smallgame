@@ -255,6 +255,7 @@ texture = ExtResource("1_l482a")
 offset = Vector2(0, -15)
 
 [node name="Area2D" type="Area2D" parent="PivotPoint/Sword"]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PivotPoint/Sword/Area2D"]
 position = Vector2(0, -16)
@@ -267,3 +268,5 @@ texture = ExtResource("3_6nwni")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_l8vww")
+
+[connection signal="body_entered" from="PivotPoint/Sword/Area2D" to="." method="_on_area_2d_body_entered"]
