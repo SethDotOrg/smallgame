@@ -1,11 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://cytrojfe260yj"]
+[gd_scene load_steps=13 format=3 uid="uid://cytrojfe260yj"]
 
 [ext_resource type="Script" uid="uid://dwi38kcbaq6li" path="res://Scripts/Weapons/Sword/sword.gd" id="1_a54vs"]
 [ext_resource type="Texture2D" uid="uid://opx2xg8oo7fn" path="res://Sprites/weapons/sword/sword1.png" id="1_l482a"]
 [ext_resource type="PackedScene" uid="uid://di555dghktu7i" path="res://Scenes/Particle/weapon_hit_spark.tscn" id="2_akyv1"]
-[ext_resource type="AudioStream" uid="uid://bq8bs0mchl7m5" path="res://Audio/SFX/SwordSwing1.mp3" id="2_l8vww"]
+[ext_resource type="AudioStream" uid="uid://bq8bs0mchl7m5" path="res://Audio/SFX/Sword/SwordSwing1.mp3" id="2_l8vww"]
 [ext_resource type="Texture2D" uid="uid://7a6m1cpbcw3h" path="res://Sprites/weapons/sword/swordslash.png" id="3_6nwni"]
-[ext_resource type="AudioStream" uid="uid://1nryrk2dc0dd" path="res://Audio/SFX/HitSparkSound1.mp3" id="6_10xpx"]
+[ext_resource type="AudioStream" uid="uid://1nryrk2dc0dd" path="res://Audio/SFX/Sword/HitSparkSound1.mp3" id="6_10xpx"]
+[ext_resource type="AudioStream" uid="uid://c2d8hpif61x1l" path="res://Audio/SFX/Sword/SwordJab.mp3" id="6_y2h4v"]
 
 [sub_resource type="Animation" id="Animation_l482a"]
 resource_name = "Attack1"
@@ -182,6 +183,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("JabSound:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_l8vww"]
 length = 0.001
@@ -293,6 +306,18 @@ tracks/8/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("JabSound:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l8vww"]
 _data = {
@@ -340,6 +365,9 @@ texture = ExtResource("3_6nwni")
 
 [node name="SwingSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_l8vww")
+
+[node name="JabSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_y2h4v")
 
 [node name="WeaponHitSparkSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_10xpx")

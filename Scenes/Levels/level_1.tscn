@@ -2847,10 +2847,10 @@ position = Vector2(1464, 384)
 
 [node name="GatherPoint" parent="GatherPoints" instance=ExtResource("12_ad63i")]
 position = Vector2(976, 209)
-ENEMY_1_TOTAL = 4
+ENEMY_1_TOTAL = 200
 
 [node name="GatherPoint2" parent="GatherPoints" instance=ExtResource("12_ad63i")]
 position = Vector2(264, 512)
-ENEMY_1_TOTAL = 4
+ENEMY_1_TOTAL = 150
 
 [connection signal="timeout" from="EnemiesForLevel/EnemyToadSpawnTimer" to="EnemiesForLevel" method="_on_enemy_toad_spawn_timer_timeout"]
