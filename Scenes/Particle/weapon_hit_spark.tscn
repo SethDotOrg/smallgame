@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://di555dghktu7i"]
+
+[ext_resource type="Texture2D" uid="uid://cynpjxh48dfdt" path="res://Sprites/Shadow.png" id="1_ajx7n"]
+
+[node name="weapon_hit_spark" type="CPUParticles2D"]
+emitting = false
+amount = 14
+texture = ExtResource("1_ajx7n")
+lifetime = 0.25
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 120.0
+scale_amount_min = 0.4
+scale_amount_max = 0.55
+color = Color(1, 1, 0, 1)
