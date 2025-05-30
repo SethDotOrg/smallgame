@@ -21,6 +21,7 @@ func _on_options_pressed():
 	_audio_menu_group.visible = false
 func _on_exit_to_main_menu_pressed():
 	get_tree().change_scene_to_file("res://Scenes/UI/main_menu.tscn")
+	GlobalVariables.player_attacking = false
 
 
 func _on_back_button_main_menu_pressed():

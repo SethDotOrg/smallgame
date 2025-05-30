@@ -6,6 +6,7 @@ extends Control
 
 func _ready():
 	#TranslationServer.set_locale("ja")
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	_start_button.grab_focus()
 	get_tree().paused = false
 
