@@ -15,3 +15,4 @@ func set_weapon():
 	elif GlobalVariables.weapon == "axe":
 		weapon = axe.instantiate()
 		add_child(weapon) 
+	

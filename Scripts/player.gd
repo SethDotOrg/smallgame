@@ -81,3 +81,6 @@ func handle_hurt_box():
 	_enemy_check_collision_shape.disabled = true
 	await get_tree().create_timer(_AP_Hit_Flash.current_animation_length).timeout
 	_enemy_check_collision_shape.disabled = false
+
+func get_weapon_manager():
+	return get_node("WeaponManager")
