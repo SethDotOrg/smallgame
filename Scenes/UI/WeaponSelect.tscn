@@ -21,7 +21,7 @@ follow_viewport_scale = 2.0
 offset_right = 1004.0
 offset_bottom = 131.0
 theme_override_font_sizes/normal_font_size = 94
-text = "Weapon Select"
+text = "WEAPON_SELECT"
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer"]
 anchors_preset = 15
@@ -41,10 +41,40 @@ custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 texture_normal = ExtResource("2_8fvm6")
 
+[node name="SwordLabel" type="Label" parent="CanvasLayer/GridContainer/Weapon1"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = 4.0
+offset_right = 43.0
+offset_bottom = 53.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "SWORD"
+
 [node name="Weapon2" type="TextureButton" parent="CanvasLayer/GridContainer"]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 texture_normal = ExtResource("3_x251i")
+
+[node name="AxeLabel" type="Label" parent="CanvasLayer/GridContainer/Weapon2"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = 4.0
+offset_right = 38.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "AXE"
 
 [connection signal="pressed" from="CanvasLayer/GridContainer/Weapon1" to="." method="_on_weapon_1_pressed"]
 [connection signal="pressed" from="CanvasLayer/GridContainer/Weapon2" to="." method="_on_weapon_2_pressed"]

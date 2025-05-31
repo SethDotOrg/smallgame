@@ -20,7 +20,7 @@ follow_viewport_scale = 2.0
 offset_right = 1004.0
 offset_bottom = 131.0
 theme_override_font_sizes/normal_font_size = 94
-text = "Level Select"
+text = "LEVEL_SELECT"
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer"]
 anchors_preset = 15
@@ -40,10 +40,40 @@ custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 texture_normal = ExtResource("1_sctym")
 
+[node name="Level1" type="Label" parent="CanvasLayer/GridContainer/Level1"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -27.0
+offset_top = 0.0700073
+offset_right = 27.0
+offset_bottom = 23.07
+grow_horizontal = 2
+grow_vertical = 0
+text = "FOREST"
+
 [node name="Level2" type="TextureButton" parent="CanvasLayer/GridContainer"]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 texture_normal = ExtResource("1_sctym")
+
+[node name="Level2" type="Label" parent="CanvasLayer/GridContainer/Level2"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -27.0
+offset_top = 0.0700073
+offset_right = 27.0
+offset_bottom = 23.07
+grow_horizontal = 2
+grow_vertical = 0
+text = "DEEP_FOREST"
 
 [connection signal="pressed" from="CanvasLayer/GridContainer/Level1" to="." method="_on_level_1_pressed"]
 [connection signal="pressed" from="CanvasLayer/GridContainer/Level2" to="." method="_on_level_2_pressed"]
