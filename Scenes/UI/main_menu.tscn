@@ -32,8 +32,7 @@ text = "MENU_START"
 
 [node name="Upgrades" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
-text = "U P GR DES
-"
+text = "UPGRADES"
 
 [node name="Options" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
