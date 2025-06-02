@@ -18,7 +18,7 @@ tracks/0/path = NodePath("PivotPoint/Sword/Area2D/CollisionShape2D:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.366667),
+"times": PackedFloat32Array(0, 0.466667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -30,7 +30,7 @@ tracks/1/path = NodePath("PivotPoint/Sword:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.233333, 0.466667),
+"times": PackedFloat32Array(0, 0.0666667, 0.233333, 0.3, 0.466667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, -8), Vector2(0, -9), Vector2(0, -9), Vector2(0, -9), Vector2(0, -8)]
@@ -42,10 +42,10 @@ tracks/2/path = NodePath("PivotPoint/Sword:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.233333, 0.466667),
+"times": PackedFloat32Array(0, 0.0666667, 0.233333, 0.3, 0.466667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.673697, -0.195477, -1.25838, 0.0]
+"values": [0.0, 0.890118, -0.195477, -1.07512, 0.0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -54,7 +54,7 @@ tracks/3/path = NodePath("PivotPoint/Sword:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.233333, 0.466667),
+"times": PackedFloat32Array(0, 0.0666667, 0.233333, 0.3, 0.466667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1, 1.105), Vector2(1, 1.105), Vector2(1, 1.105), Vector2(1, 1)]
@@ -208,7 +208,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -334,6 +334,8 @@ height = 32.0
 script = ExtResource("1_a54vs")
 weapon_hit_spark_scene = ExtResource("2_akyv1")
 tip_of_weapon = NodePath("PivotPoint/Sword/TipOfWeapon")
+weapon_spd_s_atk_1 = 1.5
+weapon_spd_s_atk_2 = 2.0
 
 [node name="AnimationPlayerWeapon" type="AnimationPlayer" parent="."]
 libraries = {
@@ -354,6 +356,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PivotPoint/Sword/Area2D"]
 position = Vector2(0, -16)
 shape = SubResource("CapsuleShape2D_l482a")
+disabled = true
 
 [node name="TipOfWeapon" type="Marker2D" parent="PivotPoint/Sword"]
 position = Vector2(0, -32)

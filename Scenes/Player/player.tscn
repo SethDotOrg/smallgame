@@ -111,6 +111,7 @@ radius = 72.0
 [node name="PlayerCharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("_AP_Hit_Flash") groups=["Player"]]
 script = ExtResource("1_cvnsp")
 _AP_Hit_Flash = NodePath("AnimatedSprite2D/APHitFlash")
+speed = 175
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("_starting_state")]
 script = ExtResource("2_3smsa")
@@ -178,8 +179,8 @@ texture = ExtResource("6_x3wgy")
 [node name="AllowHitTimer" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="body_entered" from="EnemyCheckArea2D" to="." method="_on_enemy_check_area_2d_body_entered"]
-[connection signal="body_exited" from="EnemyCheckArea2D" to="." method="_on_enemy_check_area_2d_body_exited"]
+[connection signal="area_entered" from="EnemyCheckArea2D" to="." method="_on_enemy_check_area_2d_area_entered"]
+[connection signal="area_exited" from="EnemyCheckArea2D" to="." method="_on_enemy_check_area_2d_area_exited"]
 [connection signal="body_entered" from="AreaForEnemyFollow" to="." method="_on_area_for_enemy_follow_body_entered"]
 [connection signal="body_exited" from="AreaForEnemyFollow" to="." method="_on_area_for_enemy_follow_body_exited"]
 [connection signal="timeout" from="AreaForEnemyFollow/AreaDisabledTimer" to="." method="_on_area_disabled_timer_timeout"]

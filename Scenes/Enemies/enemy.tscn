@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dukn0pfh53lu3"]
+[gd_scene load_steps=11 format=3 uid="uid://dukn0pfh53lu3"]
 
 [ext_resource type="Script" uid="uid://bgr4pqpharp3j" path="res://Scripts/enemy.gd" id="1_1f0kj"]
 [ext_resource type="Script" uid="uid://4xeeu3gr4vyg" path="res://Scripts/enemyManager.gd" id="1_afpow"]
@@ -29,15 +29,18 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_afpow"]
-radius = 12.0
+radius = 20.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_miwey"]
+radius = 8.0
 
 [node name="Enemy" type="Node2D"]
 script = ExtResource("1_afpow")
 metadata/_edit_group_ = true
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["Enemy"]]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["EnemyHitbox"]]
 collision_layer = 2
-collision_mask = 3
+collision_mask = 2
 script = ExtResource("1_1f0kj")
 death_smoke_particle_scene = ExtResource("3_287tu")
 blood_splatter_scene = ExtResource("4_0830c")
@@ -48,8 +51,16 @@ sprite_frames = SubResource("SpriteFrames_287tu")
 animation = &"run"
 frame_progress = 0.0508439
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-scale = Vector2(1.2, 1.2)
+[node name="Hitbox" type="CollisionShape2D" parent="CharacterBody2D"]
+scale = Vector2(1.015, 1.015)
 shape = SubResource("CircleShape2D_afpow")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="CharacterBody2D"]
+
+[node name="HurtboxArea2D" type="Area2D" parent="CharacterBody2D" groups=["EnemyHurtbox"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Hurtbox" type="CollisionShape2D" parent="CharacterBody2D/HurtboxArea2D"]
+scale = Vector2(1.235, 1.235)
+shape = SubResource("CircleShape2D_miwey")

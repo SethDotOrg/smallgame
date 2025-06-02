@@ -43,11 +43,11 @@ func _physics_process(delta):
 	
 
 func _on_area_for_enemy_follow_body_entered(body):#when enemy enters the enemy follow area 2d set the enemy follow point to the player
-	if body.is_in_group("Enemy"):
+	if body.is_in_group("EnemyHitbox"):
 		body.set_target_position(self.global_position)
 		#print("body entered")
 func _on_area_for_enemy_follow_body_exited(body):#after a second when the enemy leaves the follow area 2d set the follow point position to enemies assigned gather point
-	if body.is_in_group("Enemy"):
+	if body.is_in_group("EnemyHitbox"):
 		await get_tree().create_timer(1.0).timeout #seconds
 		if body != null:
 			body.set_target_position_to_gather_point()
@@ -55,24 +55,6 @@ func _on_area_for_enemy_follow_body_exited(body):#after a second when the enemy 
 func _on_area_disabled_timer_timeout():#turn on and off the area2d to check for enemies so that they will follow the player as the player moves
 	_enemy_follow_collision_shape.disabled = !_enemy_follow_collision_shape.disabled
 	_area_for_enemy_follow_timer.start()
-
-
-func _on_enemy_check_area_2d_body_entered(body):
-	if body.is_in_group("Enemy"):
-		#push the player back in the direction the enemy was moving
-		handle_hurt_box()
-		var knockback_direction = body.global_position.direction_to(self.global_position) #get the direction from the enemy touched by to the player
-		self.global_position += knockback_direction * 40 #move the player back in that direction by a strength
-		if _allow_hit_timer.time_left <=0:
-			print("hit timer")
-			#set health
-			health = health - 1
-			_health_ui._set_health(health)
-		_allow_hit_timer.start()
-	# Must be deferred as we can't change physics properties on a physics callback.
-	_enemy_check_collision_shape.set_deferred("disabled", true) #basically turn off the collision shape so we dont get more then one input at the end of the frame
-func _on_enemy_check_area_2d_body_exited(body):
-	_enemy_check_collision_shape.set_deferred("disabled", false)
 
 func handle_hurt_box():
 	#play animation for hit flash
@@ -84,3 +66,23 @@ func handle_hurt_box():
 
 func get_weapon_manager():
 	return get_node("WeaponManager")
+
+
+func _on_enemy_check_area_2d_area_entered(area):
+	print(area.get_groups())
+	if area.is_in_group("EnemyHurtbox"):
+		#push the player back in the direction the enemy was moving
+		handle_hurt_box()
+		var knockback_direction = area.global_position.direction_to(self.global_position) #get the direction from the enemy touched by to the player
+		self.global_position += knockback_direction * 40 #move the player back in that direction by a strength
+		if _allow_hit_timer.time_left <=0:
+			print("hit timer")
+			#set health
+			health = health - 1
+			_health_ui._set_health(health)
+		_allow_hit_timer.start()
+	# Must be deferred as we can't change physics properties on a physics callback.
+	_enemy_check_collision_shape.set_deferred("disabled", true) #basically turn off the collision shape so we dont get more then one input at the end of the frame
+
+func _on_enemy_check_area_2d_area_exited(area):
+	_enemy_check_collision_shape.set_deferred("disabled", false)
