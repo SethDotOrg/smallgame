@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var _time_to_clear = $CheckForPlayerArea2D/TimeToClear
 
-var ENEMY_MAX = 150 #total amount of enemies allowed on a gather point(preformance)
+@export var ENEMY_MAX = 150 #total amount of enemies allowed on a gather point(preformance)
 var total_gather_point_enemies = 0
 @export var ENEMY_1_TOTAL: int
 var enemy_1_on_gather_point:int = 0

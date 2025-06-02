@@ -2847,6 +2847,7 @@ position = Vector2(1464, 384)
 
 [node name="GatherPoint" parent="GatherPoints" instance=ExtResource("12_ad63i")]
 position = Vector2(976, 209)
+ENEMY_MAX = 100
 ENEMY_1_TOTAL = 200
 
 [node name="GatherPoint2" parent="GatherPoints" instance=ExtResource("12_ad63i")]

@@ -77,11 +77,11 @@ func _physics_process(delta):
 		GlobalVariables.player_attacking = false
 	
 #handle sword attack
-func _on_area_2d_body_entered(body):
-	if body.is_in_group("EnemyHitbox"):
-		body.kill_enemy(self.global_position)
-		handle_hit_particle(body.global_position)
-		body.get_gather_point().decrease_assigned_enemies_num()
+func _on_area_2d_area_entered(area):
+	if area.is_in_group("EnemyHitbox"):
+		area.kill_enemy(self.global_position)
+		handle_hit_particle(area.global_position)
+		area.get_gather_point().decrease_assigned_enemies_num()
 		GlobalVariables.score += 1
 		GlobalVariables.update_score_ui()
 
