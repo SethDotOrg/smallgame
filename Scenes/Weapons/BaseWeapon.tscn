@@ -7,8 +7,10 @@
 radius = 8.0
 height = 32.0
 
-[node name="BaseWeapon" type="Node2D"]
+[node name="BaseWeapon" type="Node2D" node_paths=PackedStringArray("tip_of_weapon", "weapon_collision_shape_1")]
 script = ExtResource("1_2gcr6")
+tip_of_weapon = NodePath("PivotPoint/Weapon/TipOfWeapon")
+weapon_collision_shape_1 = NodePath("PivotPoint/Weapon/Area2D/CollisionShape2D")
 
 [node name="AnimationPlayerWeapon" type="AnimationPlayer" parent="."]
 
@@ -31,3 +33,4 @@ shape = SubResource("CapsuleShape2D_qruaw")
 [node name="WeaponHitSparkSound" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="area_entered" from="PivotPoint/Weapon/Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="PivotPoint/Weapon/Area2D" to="." method="_on_area_2d_area_exited"]

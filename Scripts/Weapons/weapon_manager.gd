@@ -15,4 +15,6 @@ func set_weapon():
 	elif GlobalVariables.weapon == "axe":
 		weapon = axe.instantiate()
 		add_child(weapon) 
-	
+
+func set_player_speed(player_speed: int):
+	get_parent().set_speed(player_speed)

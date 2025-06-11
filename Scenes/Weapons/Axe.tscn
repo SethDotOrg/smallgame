@@ -281,10 +281,12 @@ _data = {
 radius = 8.0
 height = 21.5676
 
-[node name="Axe" type="Node2D" node_paths=PackedStringArray("tip_of_weapon")]
+[node name="Axe" type="Node2D" node_paths=PackedStringArray("tip_of_weapon", "weapon_collision_shape_1")]
 script = ExtResource("1_wqajm")
 weapon_hit_spark_scene = ExtResource("2_h0t45")
 tip_of_weapon = NodePath("PivotPoint/Axe/TipOfWeapon")
+weapon_collision_shape_1 = NodePath("PivotPoint/Axe/Area2D/CollisionShape2D")
+player_speed = 100
 
 [node name="AnimationPlayerWeapon" type="AnimationPlayer" parent="."]
 libraries = {

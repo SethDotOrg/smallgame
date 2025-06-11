@@ -330,10 +330,11 @@ _data = {
 radius = 8.0
 height = 32.0
 
-[node name="Sword" type="Node2D" node_paths=PackedStringArray("tip_of_weapon")]
+[node name="Sword" type="Node2D" node_paths=PackedStringArray("tip_of_weapon", "weapon_collision_shape_1")]
 script = ExtResource("1_a54vs")
 weapon_hit_spark_scene = ExtResource("2_akyv1")
 tip_of_weapon = NodePath("PivotPoint/Sword/TipOfWeapon")
+weapon_collision_shape_1 = NodePath("PivotPoint/Sword/Area2D/CollisionShape2D")
 weapon_spd_s_atk_1 = 1.5
 weapon_spd_s_atk_2 = 2.0
 

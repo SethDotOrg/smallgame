@@ -5,7 +5,6 @@ signal hit
 
 @export var _base_ui: Control
 @export var _AP_Hit_Flash: AnimationPlayer
-@export var speed = 125 # How fast the player will move (pixels/sec).
 @export var HEALTH = 3 + GlobalVariables.health
 
 @onready var _player_sprite = $AnimatedSprite2D
@@ -21,6 +20,7 @@ var _game_over_ui
 var _health_ui
 
 var health: int
+var speed: int # How fast the player will move (pixels/sec).
 
 
 func _ready():
@@ -41,16 +41,6 @@ func _process(delta: float):
 func _physics_process(delta):
 	_state_machine.process_physics(delta)
 	
-
-func _on_area_for_enemy_follow_body_entered(body):#when enemy enters the enemy follow area 2d set the enemy follow point to the player
-	if body.is_in_group("EnemyHitbox"):
-		body.set_target_position(self.global_position)
-		#print("body entered")
-func _on_area_for_enemy_follow_body_exited(body):#after a second when the enemy leaves the follow area 2d set the follow point position to enemies assigned gather point
-	if body.is_in_group("EnemyHitbox"):
-		await get_tree().create_timer(1.0).timeout #seconds
-		if body != null:
-			body.set_target_position_to_gather_point()
 
 func _on_area_disabled_timer_timeout():#turn on and off the area2d to check for enemies so that they will follow the player as the player moves
 	_enemy_follow_collision_shape.disabled = !_enemy_follow_collision_shape.disabled
@@ -86,3 +76,17 @@ func _on_enemy_check_area_2d_area_entered(area):
 
 func _on_enemy_check_area_2d_area_exited(area):
 	_enemy_check_collision_shape.set_deferred("disabled", false)
+
+
+func _on_area_for_enemy_follow_area_entered(area):
+	if area.is_in_group("EnemyHitbox"):
+		area.set_target_position(self.global_position)
+		#print("area entered")
+func _on_area_for_enemy_follow_area_exited(area):
+	if area.is_in_group("EnemyHitbox"):
+		await get_tree().create_timer(1.0).timeout #seconds
+		if area != null:
+			area.set_target_position_to_gather_point()
+
+func set_speed(player_speed: int):
+	speed = player_speed

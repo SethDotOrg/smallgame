@@ -14,3 +14,6 @@ func set_target_position(target: Vector2):
 
 func set_target_position_to_gather_point():
 	get_parent().set_target_position(get_gather_point().global_position)
+
+func get_enemy_body():
+	return get_parent()

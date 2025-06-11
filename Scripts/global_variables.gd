@@ -3,6 +3,7 @@ extends Node
 
 var score = 0 
 var player_attacking:bool = false
+var last_attack_direction: Vector2
 
 #level selections
 var level: String
