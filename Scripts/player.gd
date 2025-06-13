@@ -51,7 +51,9 @@ func handle_hurt_box():
 	_AP_Hit_Flash.play("HitFlash")
 	#then while that animation plays, the player will be invincible to enemy attacks
 	_enemy_check_collision_shape.disabled = true
+	#GlobalVariables.player_attacking = true
 	await get_tree().create_timer(_AP_Hit_Flash.current_animation_length).timeout
+	#GlobalVariables.player_attacking = false
 	_enemy_check_collision_shape.disabled = false
 
 func get_weapon_manager():

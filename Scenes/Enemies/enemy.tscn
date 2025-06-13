@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dukn0pfh53lu3"]
+[gd_scene load_steps=16 format=3 uid="uid://dukn0pfh53lu3"]
 
 [ext_resource type="Script" uid="uid://bgr4pqpharp3j" path="res://Scripts/enemy.gd" id="1_1f0kj"]
 [ext_resource type="Script" uid="uid://4xeeu3gr4vyg" path="res://Scripts/enemyManager.gd" id="1_afpow"]
@@ -29,8 +29,11 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_l8da7"]
+radius = 15.7635
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_afpow"]
-radius = 20.0
+radius = 23.6453
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_miwey"]
 radius = 8.0
@@ -177,7 +180,7 @@ frame_progress = 0.0508439
 
 [node name="EnemyCollision" type="CollisionShape2D" parent="CharacterBody2D"]
 scale = Vector2(1.015, 1.015)
-shape = SubResource("CircleShape2D_afpow")
+shape = SubResource("CircleShape2D_l8da7")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="CharacterBody2D"]
 

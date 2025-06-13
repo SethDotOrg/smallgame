@@ -1,10 +1,14 @@
-[gd_scene load_steps=11 format=4 uid="uid://ccvounnbl351a"]
+[gd_scene load_steps=15 format=4 uid="uid://ccvounnbl351a"]
 
 [ext_resource type="Texture2D" uid="uid://dwlp40mbjusfi" path="res://Sprites/Environment/staget.png" id="1_0apk2"]
 [ext_resource type="Script" uid="uid://dlsrwutftqc5i" path="res://Scripts/gather_point.gd" id="1_rapfc"]
 [ext_resource type="Texture2D" uid="uid://dhq7ddggspinf" path="res://Sprites/spawner/princesses/prorotypeprincess.png" id="2_rapfc"]
 [ext_resource type="Script" uid="uid://76r23ut578hf" path="res://Scripts/time_to_clear.gd" id="4_hjumk"]
 [ext_resource type="AudioStream" uid="uid://dam4gfi6ucho4" path="res://Audio/SFX/gulp.mp3" id="5_qo4nb"]
+[ext_resource type="Script" uid="uid://clss2xdk7q4dy" path="res://Scripts/EnemiesForLevel.gd" id="6_wg42c"]
+[ext_resource type="Script" uid="uid://bd2wbj1djmdcl" path="res://Scripts/enemy_toad.gd" id="7_1sauu"]
+[ext_resource type="PackedScene" uid="uid://dukn0pfh53lu3" path="res://Scenes/Enemies/enemy.tscn" id="8_7pk0b"]
+[ext_resource type="PackedScene" uid="uid://dgavg464ptl08" path="res://Scenes/Particle/EnemyAppearSmoke.tscn" id="9_w7yrl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hjumk"]
 texture = ExtResource("1_0apk2")
@@ -27,6 +31,9 @@ font_size = 32
 [node name="GatherPoint" type="Node2D"]
 scale = Vector2(0.75, 0.75)
 script = ExtResource("1_rapfc")
+ENEMY_1_TOTAL = 150
+enemy_1_scene = ExtResource("8_7pk0b")
+ememy_1_appear_smoke = ExtResource("9_w7yrl")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAD//wEAAAAAAAAAAAD+/wEAAAAAAAAAAAABAAIAAAAAAAEAAAAAAAIAAAAAAAEAAAD//wIAAAAAAAEAAAD+/wIAAAAAAAEAAAD+/wAAAAAAAAAAAAA=")
@@ -68,9 +75,35 @@ script = ExtResource("4_hjumk")
 [node name="TimerToClearTimer" type="Timer" parent="CheckForPlayerArea2D/TimeToClear"]
 wait_time = 50.0
 
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+wait_time = 0.01
+autostart = true
+
+[node name="EnemySpawnLocationUp" type="Marker2D" parent="."]
+position = Vector2(0, -450)
+
+[node name="EnemySpawnLocationDown" type="Marker2D" parent="."]
+position = Vector2(0, 420)
+
+[node name="EnemySpawnLocationLeft" type="Marker2D" parent="."]
+position = Vector2(-650, 0)
+
+[node name="EnemySpawnLocationRight" type="Marker2D" parent="."]
+position = Vector2(650, 0)
+
+[node name="EnemiesForLevel" type="Node2D" parent="." node_paths=PackedStringArray("enemy1")]
+z_index = 1
+script = ExtResource("6_wg42c")
+enemy1 = NodePath("EnemyToadLevel1")
+num_of_gather_points = 2
+
+[node name="EnemyToadLevel1" type="Node2D" parent="EnemiesForLevel"]
+script = ExtResource("7_1sauu")
+
 [node name="PlayerEnteredAreaSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_qo4nb")
 volume_db = 4.0
 
 [connection signal="enemies_defeated" from="." to="." method="_on_enemies_defeated"]
 [connection signal="body_entered" from="CheckForPlayerArea2D" to="CheckForPlayerArea2D/TimeToClear" method="_on_check_for_player_area_2d_body_entered"]
+[connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

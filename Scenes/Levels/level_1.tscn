@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://c3t8ugyrn8vqe"]
+[gd_scene load_steps=14 format=4 uid="uid://c3t8ugyrn8vqe"]
 
 [ext_resource type="Script" uid="uid://b56t0423twb2b" path="res://Scripts/levelbase.gd" id="1_7r2dd"]
 [ext_resource type="Texture2D" uid="uid://crdfaj0r3d6ol" path="res://Sprites/Environment/TileSetForest.png" id="1_afv7b"]
@@ -10,8 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://04bjwida6yhi" path="res://Sprites/WorldItems/Forest/Pot.png" id="7_31phq"]
 [ext_resource type="Script" uid="uid://clss2xdk7q4dy" path="res://Scripts/EnemiesForLevel.gd" id="8_7hll7"]
 [ext_resource type="Script" uid="uid://bd2wbj1djmdcl" path="res://Scripts/enemy_toad.gd" id="9_fayjm"]
-[ext_resource type="PackedScene" uid="uid://dukn0pfh53lu3" path="res://Scenes/Enemies/enemy.tscn" id="10_nojx8"]
-[ext_resource type="PackedScene" uid="uid://dgavg464ptl08" path="res://Scenes/Particle/EnemyAppearSmoke.tscn" id="11_vvknj"]
 [ext_resource type="PackedScene" uid="uid://ccvounnbl351a" path="res://Scenes/Levels/gather_point.tscn" id="12_ad63i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h4fw4"]
@@ -2824,8 +2822,6 @@ num_of_gather_points = 2
 
 [node name="EnemyToadLevel1" type="Node2D" parent="EnemiesForLevel"]
 script = ExtResource("9_fayjm")
-enemy_1_scene = ExtResource("10_nojx8")
-ememy_1_appear_smoke = ExtResource("11_vvknj")
 
 [node name="EnemyToadSpawnTimer" type="Timer" parent="EnemiesForLevel"]
 wait_time = 0.01
@@ -2847,7 +2843,6 @@ position = Vector2(1464, 384)
 
 [node name="GatherPoint" parent="GatherPoints" instance=ExtResource("12_ad63i")]
 position = Vector2(976, 209)
-ENEMY_MAX = 100
 ENEMY_1_TOTAL = 200
 
 [node name="GatherPoint2" parent="GatherPoints" instance=ExtResource("12_ad63i")]
