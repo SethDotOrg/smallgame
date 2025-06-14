@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://ccvounnbl351a"]
+[gd_scene load_steps=16 format=4 uid="uid://ccvounnbl351a"]
 
 [ext_resource type="Texture2D" uid="uid://dwlp40mbjusfi" path="res://Sprites/Environment/staget.png" id="1_0apk2"]
 [ext_resource type="Script" uid="uid://dlsrwutftqc5i" path="res://Scripts/gather_point.gd" id="1_rapfc"]
@@ -28,12 +28,18 @@ height = 1024.0
 [sub_resource type="LabelSettings" id="LabelSettings_qo4nb"]
 font_size = 32
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_wg42c"]
+radius = 648.198
+
 [node name="GatherPoint" type="Node2D"]
-scale = Vector2(0.75, 0.75)
 script = ExtResource("1_rapfc")
 ENEMY_1_TOTAL = 150
 enemy_1_scene = ExtResource("8_7pk0b")
 ememy_1_appear_smoke = ExtResource("9_w7yrl")
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="SpawnStartLocation" type="Marker2D" parent="."]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAD//wEAAAAAAAAAAAD+/wEAAAAAAAAAAAABAAIAAAAAAAEAAAAAAAIAAAAAAAEAAAD//wIAAAAAAAEAAAD+/wIAAAAAAAEAAAD+/wAAAAAAAAAAAAA=")
@@ -75,21 +81,15 @@ script = ExtResource("4_hjumk")
 [node name="TimerToClearTimer" type="Timer" parent="CheckForPlayerArea2D/TimeToClear"]
 wait_time = 50.0
 
+[node name="EnemySpawnStartArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemySpawnStartArea2D"]
+shape = SubResource("CircleShape2D_wg42c")
+debug_color = Color(0.591134, 0.375556, 1, 0.42)
+
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 wait_time = 0.01
 autostart = true
-
-[node name="EnemySpawnLocationUp" type="Marker2D" parent="."]
-position = Vector2(0, -450)
-
-[node name="EnemySpawnLocationDown" type="Marker2D" parent="."]
-position = Vector2(0, 420)
-
-[node name="EnemySpawnLocationLeft" type="Marker2D" parent="."]
-position = Vector2(-650, 0)
-
-[node name="EnemySpawnLocationRight" type="Marker2D" parent="."]
-position = Vector2(650, 0)
 
 [node name="EnemiesForLevel" type="Node2D" parent="." node_paths=PackedStringArray("enemy1")]
 z_index = 1
@@ -106,4 +106,6 @@ volume_db = 4.0
 
 [connection signal="enemies_defeated" from="." to="." method="_on_enemies_defeated"]
 [connection signal="body_entered" from="CheckForPlayerArea2D" to="CheckForPlayerArea2D/TimeToClear" method="_on_check_for_player_area_2d_body_entered"]
+[connection signal="body_entered" from="EnemySpawnStartArea2D" to="." method="_on_enemy_spawn_start_area_2d_body_entered"]
+[connection signal="body_exited" from="EnemySpawnStartArea2D" to="." method="_on_enemy_spawn_start_area_2d_body_exited"]
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

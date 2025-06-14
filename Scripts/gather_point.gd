@@ -2,11 +2,14 @@ extends Node2D
 
 @onready var _time_to_clear = $CheckForPlayerArea2D/TimeToClear
 @onready var enemy_spawn_timer = $EnemySpawnTimer
+@onready var enemies_node = $Enemies
+@onready var spawn_start_location = $SpawnStartLocation
 
 #@export var ENEMY_MAX = 150 #total amount of enemies allowed on a gather point(preformance)
 var ENEMY_MAX #total amount of enemies allowed on a gather point(preformance)
 var total_gather_point_enemies = 0
 var total_enemies_used: int
+var spawn_enemies: bool
 
 @export var enemy_spawn_time: float = 0.01
 @export_category("Enemy 1")
@@ -127,7 +130,7 @@ func _on_enemy_spawn_timer_timeout():
 	#Choose which enemy to spawn
 	#WRITE CODE HERE for above
 	var chosen_enemy = randi_range(0,total_enemies_used) # this should choose
-	if chosen_enemy == 0 and enemy_1_count <  ENEMY_1_TOTAL:
+	if spawn_enemies == true and chosen_enemy == 0 and enemy_1_count <  ENEMY_1_TOTAL: #need to move chosen enemy check into the code
 		# Create a new instance of the Mob scene.
 		var enemy = enemy_1_scene.instantiate()
 		var enemy_spawn_location
@@ -135,13 +138,15 @@ func _on_enemy_spawn_timer_timeout():
 			update_assigned_enemy_1_num()
 			enemy.set_gather_point(self)
 			spawned_enemy = true
-			enemy_spawn_location = self.global_position
+			enemy_spawn_location = spawn_start_location.global_position
 		
 		if spawned_enemy == true:
 			var enemy_appear_smoke = ememy_1_appear_smoke.instantiate()
 			enemy_appear_smoke.emitting = true
 			# Set the enemy's position to the random location around the spawn so that they don't spawn at the same coords
-			var enemy_spawn_position = enemy_spawn_location + Vector2(randf_range(-500,500),randf_range(-500,500))
+			#var enemy_spawn_position = enemy_spawn_location + Vector2(randf_range(-1000,1000),randf_range(-1000,1000))
+			var enemy_spawn_position = spawn_start_location.global_position + Vector2(randf_range(-500,500),randf_range(-500,500))
+			#TODO above is not working
 			enemy.global_position = enemy_spawn_position
 			enemy_appear_smoke.global_position = enemy_spawn_position #spawn smoke should be at the same location
 			
@@ -150,6 +155,15 @@ func _on_enemy_spawn_timer_timeout():
 			enemy.set_enemy_speed(speed)
 			
 			# Spawn the enemy by adding it as a child of self
-			add_child(enemy)
+			enemies_node.add_child(enemy)
 			#spawn the smoke
-			add_child(enemy_appear_smoke)
+			enemies_node.add_child(enemy_appear_smoke)
+
+
+func _on_enemy_spawn_start_area_2d_body_entered(body):
+	if body.is_in_group("Player"):
+		spawn_enemies = true
+func _on_enemy_spawn_start_area_2d_body_exited(body):
+	if body.is_in_group("Player"):
+		spawn_enemies = false
+		#TODO need to clear the Enemies Node
