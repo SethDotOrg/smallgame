@@ -16,7 +16,7 @@ script = ExtResource("1_i6g32")
 
 [node name="Player" parent="." node_paths=PackedStringArray("_base_ui") instance=ExtResource("1_ebmjs")]
 z_index = 2
-position = Vector2(552, 232)
+position = Vector2(-168, -607)
 _base_ui = NodePath("../UI")
 
 [node name="Levels" type="Node2D" parent="."]

@@ -133,22 +133,19 @@ func _on_enemy_spawn_timer_timeout():
 	if spawn_enemies == true and chosen_enemy == 0 and enemy_1_count <  ENEMY_1_TOTAL: #need to move chosen enemy check into the code
 		# Create a new instance of the Mob scene.
 		var enemy = enemy_1_scene.instantiate()
-		var enemy_spawn_location
 		if check_assigned_enemy_1_num() and check_assigned_enemies():
 			update_assigned_enemy_1_num()
 			enemy.set_gather_point(self)
 			spawned_enemy = true
-			enemy_spawn_location = spawn_start_location.global_position
 		
 		if spawned_enemy == true:
 			var enemy_appear_smoke = ememy_1_appear_smoke.instantiate()
 			enemy_appear_smoke.emitting = true
 			# Set the enemy's position to the random location around the spawn so that they don't spawn at the same coords
-			#var enemy_spawn_position = enemy_spawn_location + Vector2(randf_range(-1000,1000),randf_range(-1000,1000))
-			var enemy_spawn_position = spawn_start_location.global_position + Vector2(randf_range(-500,500),randf_range(-500,500))
-			#TODO above is not working
-			enemy.global_position = enemy_spawn_position
-			enemy_appear_smoke.global_position = enemy_spawn_position #spawn smoke should be at the same location
+			#TODO this position work seems to all be local. just double check and comment it
+			var enemy_spawn_position = spawn_start_location.position + Vector2(randf_range(-500,500),randf_range(-500,500))
+			enemy.position = enemy_spawn_position
+			enemy_appear_smoke.position = enemy_spawn_position #spawn smoke should be at the same location
 			
 			# Choose the speed for the enemy.
 			var speed = randf_range(40.0, 70.0)
