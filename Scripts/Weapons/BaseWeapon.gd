@@ -98,7 +98,7 @@ func _on_area_2d_area_entered(area):
 		
 		area.kill_enemy(self.global_position)
 		handle_hit_particle(area.global_position)
-		area.get_gather_point().decrease_assigned_enemies_num()
+		area.get_gather_point().decrease_assigned_enemies_num(area.get_enemy_number())
 		GlobalVariables.score += 1
 		GlobalVariables.update_score_ui()
 		#var knockback_direction = (area.global_position - get_parent().get_parent().global_position).normalized()

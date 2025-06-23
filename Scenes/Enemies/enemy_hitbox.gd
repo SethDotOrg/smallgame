@@ -9,6 +9,9 @@ func get_gather_point():
 func get_enemy_speed():
 	return get_parent().get_enemy_speed()
 
+func get_enemy_number():
+	return get_parent().get_enemy_number()
+
 func set_target_position(target: Vector2):
 	get_parent().set_target_position(target)
 

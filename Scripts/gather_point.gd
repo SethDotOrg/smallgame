@@ -16,42 +16,49 @@ var spawn_enemies: bool
 var enemy_1_on_gather_point:int = 0
 @export var ENEMY_1_TOTAL: int = 0
 var enemy_1_count = 0
+var enemy_1_killed = 0
 @export var enemy_1_scene: PackedScene
 @export var ememy_1_appear_smoke: PackedScene
 @export_category("Enemy 2")
 var enemy_2_on_gather_point:int = 0
 @export var ENEMY_2_TOTAL: int = 0
-var enemy_2_count
+var enemy_2_count = 0
+var enemy_2_killed = 0
 @export var enemy_2_scene: PackedScene
 @export var ememy_2_appear_smoke: PackedScene
 @export_category("Enemy 3")
 var enemy_3_on_gather_point:int = 0
 @export var ENEMY_3_TOTAL: int = 0
-var enemy_3_count
+var enemy_3_count = 0
+var enemy_3_killed = 0
 @export var enemy_3_scene: PackedScene
 @export var ememy_3_appear_smoke: PackedScene
 @export_category("Enemy 4")
 var enemy_4_on_gather_point:int = 0
 @export var ENEMY_4_TOTAL: int = 0
-var enemy_4_count
+var enemy_4_count = 0
+var enemy_4_killed = 0
 @export var enemy_4_scene: PackedScene
 @export var ememy_4_appear_smoke: PackedScene
 @export_category("Enemy 5")
 var enemy_5_on_gather_point:int = 0
 @export var ENEMY_5_TOTAL: int = 0
-var enemy_5_count
+var enemy_5_count = 0
+var enemy_5_killed = 0
 @export var enemy_5_scene: PackedScene
 @export var ememy_5_appear_smoke: PackedScene
 @export_category("Enemy 6")
 var enemy_6_on_gather_point:int = 0
 @export var ENEMY_6_TOTAL: int = 0
-var enemy_6_count
+var enemy_6_count = 0
+var enemy_6_killed = 0
 @export var enemy_6_scene: PackedScene
 @export var ememy_6_appear_smoke: PackedScene
 @export_category("Enemy 7")
 var enemy_7_on_gather_point:int = 0
 @export var ENEMY_7_TOTAL: int = 0
-var enemy_7_count
+var enemy_7_count = 0
+var enemy_7_killed = 0
 @export var enemy_7_scene: PackedScene
 @export var ememy_7_appear_smoke: PackedScene
 
@@ -83,8 +90,23 @@ func check_assigned_enemies(): #check to see if total enimies for this gather po
 	return total_gather_point_enemies < ENEMY_MAX
 func increase_assigned_enemies_num():
 	total_gather_point_enemies = total_gather_point_enemies + 1
-func decrease_assigned_enemies_num():
+func decrease_assigned_enemies_num(enemy_num: int):#TODO add collection of which enemies killed. to be used when spawning enemies back in
 	total_gather_point_enemies = total_gather_point_enemies - 1
+	if enemy_num == 1:
+		enemy_1_killed = enemy_1_killed + 1
+	elif enemy_num == 2:
+		enemy_2_killed = enemy_2_killed + 1
+	elif enemy_num == 3:
+		enemy_3_killed = enemy_3_killed + 1
+	elif enemy_num == 4:
+		enemy_4_killed = enemy_4_killed + 1
+	elif enemy_num == 5:
+		enemy_5_killed = enemy_5_killed + 1
+	elif enemy_num == 6:
+		enemy_6_killed = enemy_6_killed + 1
+	elif enemy_num == 7:
+		enemy_7_killed = enemy_7_killed + 1
+	
 	if total_gather_point_enemies == 0 and check_enemy_totals():
 		print("IN EMIT: ", _time_to_clear._get_timer_for_score())
 		enemies_defeated.emit() #emit for the signal. so any thing listening for it is hit
@@ -127,10 +149,13 @@ func calculate_score():
 
 func _on_enemy_spawn_timer_timeout():
 	var spawned_enemy = false
+	var enemy_num
 	#Choose which enemy to spawn
 	#WRITE CODE HERE for above
 	var chosen_enemy = randi_range(0,total_enemies_used) # this should choose
+	#ENEMY 1
 	if spawn_enemies == true and chosen_enemy == 0 and enemy_1_count <  ENEMY_1_TOTAL: #need to move chosen enemy check into the code
+		enemy_num = 1
 		# Create a new instance of the Mob scene.
 		var enemy = enemy_1_scene.instantiate()
 		if check_assigned_enemy_1_num() and check_assigned_enemies():
@@ -152,6 +177,8 @@ func _on_enemy_spawn_timer_timeout():
 			var speed = randf_range(40.0, 70.0)
 			enemy.set_enemy_speed(speed)
 			
+			enemy.set_enemy_number(enemy_num)
+			
 			# Spawn the enemy by adding it as a child of self
 			enemies_node.add_child(enemy)
 			#spawn the smoke
@@ -164,4 +191,24 @@ func _on_enemy_spawn_start_area_2d_body_entered(body):
 func _on_enemy_spawn_start_area_2d_body_exited(body):
 	if body.is_in_group("Player"):
 		spawn_enemies = false
-		#TODO need to clear the Enemies Node
+		var enemies_array = enemies_node.get_children()
+		for x in enemies_array:
+			x.queue_free()
+		reset_enemy_spawn_numbers()
+
+func reset_enemy_spawn_numbers():
+	enemy_1_count = enemy_1_killed
+	enemy_1_on_gather_point = enemy_1_killed
+	enemy_2_count = enemy_2_killed
+	enemy_2_on_gather_point = enemy_2_killed
+	enemy_3_count = enemy_3_killed
+	enemy_3_on_gather_point = enemy_3_killed
+	enemy_4_count = enemy_4_killed
+	enemy_4_on_gather_point = enemy_4_killed
+	enemy_5_count = enemy_5_killed
+	enemy_5_on_gather_point = enemy_5_killed
+	enemy_6_count = enemy_6_killed
+	enemy_6_on_gather_point = enemy_6_killed
+	enemy_7_count = enemy_7_killed
+	enemy_7_on_gather_point = enemy_7_killed
+	total_gather_point_enemies = 0
