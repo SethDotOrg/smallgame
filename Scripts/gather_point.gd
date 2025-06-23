@@ -142,7 +142,8 @@ func _on_enemy_spawn_timer_timeout():
 			var enemy_appear_smoke = ememy_1_appear_smoke.instantiate()
 			enemy_appear_smoke.emitting = true
 			# Set the enemy's position to the random location around the spawn so that they don't spawn at the same coords
-			#TODO this position work seems to all be local. just double check and comment it
+			#these use position as it is spawned with relation to the gather point. as a seperate scene it seems to
+			#match local coords and global coords but will not work when using global position
 			var enemy_spawn_position = spawn_start_location.position + Vector2(randf_range(-500,500),randf_range(-500,500))
 			enemy.position = enemy_spawn_position
 			enemy_appear_smoke.position = enemy_spawn_position #spawn smoke should be at the same location

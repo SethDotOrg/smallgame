@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" uid="uid://c7qvqnaqy8jxr" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Script" uid="uid://bvjmux81xare5" path="res://Scripts/PlayerStateMachine/player_state_machine.gd" id="2_3smsa"]
-[ext_resource type="Texture2D" uid="uid://3d745opw1kjv" path="res://Sprites/Player/Player.png" id="2_fkybt"]
 [ext_resource type="Script" uid="uid://cnnrqk8maadni" path="res://Scripts/PlayerStateMachine/state.gd" id="3_8erm5"]
 [ext_resource type="Script" uid="uid://b08q1hadtp8ox" path="res://Scripts/PlayerStateMachine/idle.gd" id="4_8erm5"]
 [ext_resource type="Script" uid="uid://boyqpdoc0cox3" path="res://Scripts/PlayerStateMachine/walk.gd" id="5_f1ek2"]
 [ext_resource type="Shader" uid="uid://e42anfy4keux" path="res://Shaders/HitFlash.tres" id="6_gk6dx"]
 [ext_resource type="Script" uid="uid://bmwybxofc4i7h" path="res://Scripts/Weapons/weapon_manager.gd" id="6_jhyir"]
 [ext_resource type="Texture2D" uid="uid://cynpjxh48dfdt" path="res://Sprites/Shadow.png" id="6_x3wgy"]
+[ext_resource type="Texture2D" uid="uid://bmoe5im4sntx1" path="res://Sprites/Player/Player2.png" id="9_jhyir"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f1ek2"]
 radius = 8.0
@@ -24,27 +24,27 @@ shader = ExtResource("6_gk6dx")
 shader_parameter/Enabled = false
 shader_parameter/Tint = Color(0.498039, 1, 1, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_x3wgy"]
-atlas = ExtResource("2_fkybt")
+[sub_resource type="AtlasTexture" id="AtlasTexture_74mp2"]
+atlas = ExtResource("9_jhyir")
 region = Rect2(0, 0, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3smsa"]
-atlas = ExtResource("2_fkybt")
+[sub_resource type="AtlasTexture" id="AtlasTexture_oikmp"]
+atlas = ExtResource("9_jhyir")
 region = Rect2(16, 0, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8erm5"]
-atlas = ExtResource("2_fkybt")
+[sub_resource type="AtlasTexture" id="AtlasTexture_06tpx"]
+atlas = ExtResource("9_jhyir")
 region = Rect2(32, 0, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_f1ek2"]
-atlas = ExtResource("2_fkybt")
+[sub_resource type="AtlasTexture" id="AtlasTexture_7g0yx"]
+atlas = ExtResource("9_jhyir")
 region = Rect2(48, 0, 16, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8erm5"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_x3wgy")
+"texture": SubResource("AtlasTexture_74mp2")
 }],
 "loop": true,
 "name": &"Idle",
@@ -52,16 +52,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_x3wgy")
+"texture": SubResource("AtlasTexture_74mp2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3smsa")
+"texture": SubResource("AtlasTexture_oikmp")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8erm5")
+"texture": SubResource("AtlasTexture_06tpx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_f1ek2")
+"texture": SubResource("AtlasTexture_7g0yx")
 }],
 "loop": true,
 "name": &"Run",
@@ -165,8 +165,9 @@ wait_time = 0.3
 autostart = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+zoom = Vector2(2.4, 2.4)
 position_smoothing_enabled = true
+position_smoothing_speed = 7.0
 
 [node name="Shadow" type="Sprite2D" parent="."]
 visible = false
