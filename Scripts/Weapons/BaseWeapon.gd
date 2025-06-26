@@ -13,6 +13,8 @@ extends Node2D
 @export var knockback_duration: float = 2
 @export var weapon_spd_s_atk_1: float = 1
 @export var weapon_spd_s_atk_2: float = 1
+@export var attack_position_change_amount_primary: float = 0
+@export var attack_position_change_amount_secondary: float = 0
 
 @onready var animation_player_weapon = $AnimationPlayerWeapon
 @onready var pivot_point = $PivotPoint
@@ -28,6 +30,7 @@ func _physics_process(delta):
 		GlobalVariables.player_attacking = true
 		GlobalVariables.last_attack_direction = Vector2.RIGHT
 		pivot_point.rotation = deg_to_rad(90)
+		get_parent().apply_position_change_right(attack_position_change_amount_primary)
 		animation_player_weapon.play("Attack1")
 		await animation_player_weapon.animation_finished
 		GlobalVariables.player_attacking = false
@@ -36,6 +39,7 @@ func _physics_process(delta):
 		GlobalVariables.player_attacking = true
 		GlobalVariables.last_attack_direction = Vector2.LEFT
 		pivot_point.rotation = deg_to_rad(270)
+		get_parent().apply_position_change_left(attack_position_change_amount_primary)
 		animation_player_weapon.play("Attack1")
 		await animation_player_weapon.animation_finished
 		GlobalVariables.player_attacking = false
@@ -44,6 +48,7 @@ func _physics_process(delta):
 		GlobalVariables.player_attacking = true
 		GlobalVariables.last_attack_direction = Vector2.DOWN
 		pivot_point.rotation = deg_to_rad(180)
+		get_parent().apply_position_change_down(attack_position_change_amount_primary)
 		animation_player_weapon.play("Attack1")
 		await animation_player_weapon.animation_finished
 		GlobalVariables.player_attacking = false
@@ -52,6 +57,7 @@ func _physics_process(delta):
 		GlobalVariables.player_attacking = true
 		GlobalVariables.last_attack_direction = Vector2.UP
 		pivot_point.rotation = deg_to_rad(0)
+		get_parent().apply_position_change_up(attack_position_change_amount_primary)
 		animation_player_weapon.play("Attack1")
 		await animation_player_weapon.animation_finished
 		GlobalVariables.player_attacking = false
@@ -62,6 +68,7 @@ func _physics_process(delta):
 		GlobalVariables.player_attacking = true
 		GlobalVariables.last_attack_direction = Vector2.RIGHT
 		pivot_point.rotation = deg_to_rad(90)
+		get_parent().apply_position_change_right(attack_position_change_amount_secondary)
 		animation_player_weapon.play("Attack2")
 		await animation_player_weapon.animation_finished
 		GlobalVariables.player_attacking = false
@@ -70,6 +77,7 @@ func _physics_process(delta):
 		GlobalVariables.player_attacking = true
 		GlobalVariables.last_attack_direction = Vector2.LEFT
 		pivot_point.rotation = deg_to_rad(270)
+		get_parent().apply_position_change_left(attack_position_change_amount_secondary)
 		animation_player_weapon.play("Attack2")
 		await animation_player_weapon.animation_finished
 		GlobalVariables.player_attacking = false
@@ -78,6 +86,7 @@ func _physics_process(delta):
 		GlobalVariables.player_attacking = true
 		GlobalVariables.last_attack_direction = Vector2.DOWN
 		pivot_point.rotation = deg_to_rad(180)
+		get_parent().apply_position_change_down(attack_position_change_amount_secondary)
 		animation_player_weapon.play("Attack2")
 		await animation_player_weapon.animation_finished
 		GlobalVariables.player_attacking = false
@@ -86,6 +95,7 @@ func _physics_process(delta):
 		GlobalVariables.player_attacking = true
 		GlobalVariables.last_attack_direction = Vector2.UP
 		pivot_point.rotation = deg_to_rad(0)
+		get_parent().apply_position_change_up(attack_position_change_amount_secondary)
 		animation_player_weapon.play("Attack2")
 		await animation_player_weapon.animation_finished
 		GlobalVariables.player_attacking = false

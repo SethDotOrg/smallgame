@@ -18,3 +18,12 @@ func set_weapon():
 
 func set_player_speed(player_speed: int):
 	get_parent().set_speed(player_speed)
+
+func apply_position_change_up(amount:float):
+	get_parent().apply_position_change_up(amount)
+func apply_position_change_down(amount:float):
+	get_parent().apply_position_change_down(amount)
+func apply_position_change_left(amount:float):
+	get_parent().apply_position_change_left(amount)
+func apply_position_change_right(amount:float):
+	get_parent().apply_position_change_right(amount)

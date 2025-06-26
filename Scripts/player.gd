@@ -92,3 +92,12 @@ func _on_area_for_enemy_follow_area_exited(area):
 
 func set_speed(player_speed: int):
 	speed = player_speed
+
+func apply_position_change_up(amount:float):
+	position.y = position.y - amount
+func apply_position_change_down(amount:float):
+	position.y = position.y + amount
+func apply_position_change_left(amount:float):
+	position.x = position.x - amount
+func apply_position_change_right(amount:float):
+	position.x = position.x + amount

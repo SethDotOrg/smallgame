@@ -337,6 +337,8 @@ tip_of_weapon = NodePath("PivotPoint/Sword/TipOfWeapon")
 weapon_collision_shape_1 = NodePath("PivotPoint/Sword/Area2D/CollisionShape2D")
 weapon_spd_s_atk_1 = 1.5
 weapon_spd_s_atk_2 = 2.0
+attack_position_change_amount_primary = 7.0
+attack_position_change_amount_secondary = 15.0
 
 [node name="AnimationPlayerWeapon" type="AnimationPlayer" parent="."]
 libraries = {
