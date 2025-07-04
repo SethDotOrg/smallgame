@@ -9,6 +9,7 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	_start_button.grab_focus()
 	get_tree().paused = false
+	GlobalVariables.can_pause = true
 
 
 func _on_start_pressed():

@@ -12,6 +12,8 @@ var weapon: String
 #player upgrades
 var health: int
 
+#UI
+var can_pause = true
 func update_score_ui():
 	var UI = get_node("../Game/UI")
 	UI.get_score_ui().update_score()

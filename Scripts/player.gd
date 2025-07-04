@@ -21,7 +21,7 @@ var _health_ui
 
 var health: int
 var speed: int # How fast the player will move (pixels/sec).
-
+var orig_speed: int #saved speed for speed changes
 
 func _ready():
 	_state_machine.init(self)
@@ -92,7 +92,13 @@ func _on_area_for_enemy_follow_area_exited(area):
 
 func set_speed(player_speed: int):
 	speed = player_speed
+	orig_speed = player_speed
 
+func stop_player():
+	speed = 0
+func resume_player():
+	speed = orig_speed
+	
 func apply_position_change_up(amount:float):
 	position.y = position.y - amount
 func apply_position_change_down(amount:float):

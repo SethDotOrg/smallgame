@@ -127,3 +127,8 @@ func handle_hit_particle(hit_position:Vector2):
 	weapon_hit_spark.emitting = true
 	get_tree().current_scene.add_child(weapon_hit_spark)
 	hit_spark_sound.playing = true
+
+func stop_player():
+	get_parent().stop_player()
+func resume_player():
+	get_parent().resume_player()

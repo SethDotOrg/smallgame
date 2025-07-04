@@ -82,6 +82,23 @@ tracks/5/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.466667),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"stop_player"
+}, {
+"args": [],
+"method": &"resume_player"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_sg0m5"]
 resource_name = "Attack2"
@@ -169,6 +186,23 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(3.08, 1.815), Vector2(3.08, 1.815), Vector2(1, 1)]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.466667),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"stop_player"
+}, {
+"args": [],
+"method": &"resume_player"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_q5vg7"]

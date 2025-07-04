@@ -13,6 +13,8 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
+	if check_movement(): 
+		return walk_state
 	parent.move_and_slide()
 	return null
 

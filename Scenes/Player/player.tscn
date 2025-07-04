@@ -146,7 +146,7 @@ material = SubResource("ShaderMaterial_jhyir")
 position = Vector2(0, -7)
 scale = Vector2(1.4, 1.4)
 sprite_frames = SubResource("SpriteFrames_8erm5")
-animation = &"Idle"
+animation = &"Run"
 
 [node name="APHitFlash" type="AnimationPlayer" parent="AnimatedSprite2D"]
 libraries = {

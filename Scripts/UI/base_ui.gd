@@ -12,14 +12,14 @@ func _ready():
 	current_state = MENU_STATES.LIVE_STATE
 
 func _unhandled_input(_event):
-	if Input.is_action_just_pressed("pause") and current_state == MENU_STATES.LIVE_STATE:
+	if Input.is_action_just_pressed("pause") and current_state == MENU_STATES.LIVE_STATE and GlobalVariables.can_pause == true:
 		print("pause in live")
 		_ui_hide_switch()
 		await get_tree().create_timer(0.1).timeout #seconds 
 		current_state = MENU_STATES.PAUSE_STATE
 		get_tree().paused = true #pause the game but not the things marked as not being able to in the inspector
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE) #this allows the mouse to be seen :>
-	if Input.is_action_just_pressed("pause") and current_state == MENU_STATES.PAUSE_STATE:
+	if Input.is_action_just_pressed("pause") and current_state == MENU_STATES.PAUSE_STATE and GlobalVariables.can_pause == true:
 		print("pause in pause")
 		handle_game_resume()
 

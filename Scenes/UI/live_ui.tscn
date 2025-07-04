@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://debiea02el5yl"]
+[gd_scene load_steps=15 format=3 uid="uid://debiea02el5yl"]
 
 [ext_resource type="Script" uid="uid://d21rgxc5hqn8y" path="res://Scripts/UI/score.gd" id="1_qerha"]
 [ext_resource type="Script" uid="uid://di8ql7soax7hj" path="res://Scripts/UI/live_ui.gd" id="1_usgl1"]
 [ext_resource type="Script" uid="uid://dd7j8ghakp0b1" path="res://Scripts/UI/time.gd" id="2_usgl1"]
 [ext_resource type="Script" uid="uid://bnqt62r0yp4he" path="res://Scripts/UI/health.gd" id="3_b1sxw"]
+[ext_resource type="Texture2D" uid="uid://dbuvojtahb1yo" path="res://Sprites/UI/Heart.png" id="5_b1sxw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_d1ess"]
 font_size = 32
@@ -15,6 +16,52 @@ font_size = 32
 font_size = 40
 font_color = Color(0.921154, 0.920709, 0, 1)
 shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3tyq"]
+atlas = ExtResource("5_b1sxw")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtoc7"]
+atlas = ExtResource("5_b1sxw")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvwb6"]
+atlas = ExtResource("5_b1sxw")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_krkre"]
+atlas = ExtResource("5_b1sxw")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_leeu4"]
+atlas = ExtResource("5_b1sxw")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jsas2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3tyq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rtoc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvwb6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_krkre")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_leeu4")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"heartbreak",
+"speed": 5.0
+}]
 
 [node name="LiveUI" type="Control"]
 process_mode = 1
@@ -28,8 +75,9 @@ script = ExtResource("1_usgl1")
 
 [node name="Score" type="Label" parent="."]
 layout_mode = 0
-offset_right = 121.0
-offset_bottom = 45.0
+offset_top = 10.0
+offset_right = 136.0
+offset_bottom = 55.0
 text = "Score: 0"
 label_settings = SubResource("LabelSettings_d1ess")
 script = ExtResource("1_qerha")
@@ -39,9 +87,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -41.0
-offset_right = 41.0
-offset_bottom = 45.0
+offset_left = -44.0
+offset_top = 10.0
+offset_right = 44.0
+offset_bottom = 55.0
 grow_horizontal = 2
 text = "00:00"
 label_settings = SubResource("LabelSettings_xm13k")
@@ -67,16 +116,50 @@ grow_vertical = 2
 text = "GAME OVER"
 label_settings = SubResource("LabelSettings_fkybt")
 
+[node name="Retry" type="Button" parent="GameOver"]
+process_mode = 2
+layout_mode = 0
+offset_left = 48.0
+offset_top = 55.5
+offset_right = 157.0
+offset_bottom = 79.5
+focus_neighbor_top = NodePath("../MainMenu")
+focus_neighbor_bottom = NodePath("../MainMenu")
+text = "MENU_RETRY"
+
+[node name="MainMenu" type="Button" parent="GameOver"]
+process_mode = 2
+layout_mode = 0
+offset_left = 28.0
+offset_top = 95.5
+offset_right = 178.0
+offset_bottom = 119.5
+focus_neighbor_top = NodePath("../Retry")
+focus_neighbor_bottom = NodePath("../Retry")
+text = "MENU_EXIT_TO_MAIN_MENU"
+
 [node name="Health" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -139.0
-offset_bottom = 45.0
+offset_left = -205.19
+offset_top = 19.5
+offset_right = -29.1899
+offset_bottom = 64.5
 grow_horizontal = 0
-text = "Health: 3"
+text = "HEALTH:   3"
 label_settings = SubResource("LabelSettings_d1ess")
 script = ExtResource("3_b1sxw")
 
+[node name="Heart" type="AnimatedSprite2D" parent="Health"]
+z_index = -1
+position = Vector2(163.19, 19.5)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_jsas2")
+animation = &"heartbreak"
+
 [connection signal="timeout" from="Time/GameTime" to="." method="_on_game_time_timeout"]
+[connection signal="pressed" from="GameOver/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="GameOver/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="health_hits_zero" from="Health" to="." method="_on_health_health_hits_zero"]
